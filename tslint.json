@@ -1,0 +1,12 @@
+{
+  "extends": ["tslint-config-alloy", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": ["**/node_modules/**"]
+  },
+  "rules": {
+    "strict": ["error", "never"],
+    "semicolon": [true, "never"],
+    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
+    "array-bracket-spacing": ["error", "never"]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "@puckjs/utils",
+  "version": "1.2.1",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "jest",
+    "clean": "rimraf lib",
+    "prebuild": "npm run clean",
+    "publish": "npm publish --access=public"
+  },
+  "dependencies": {
+    "async-validator": "^3.1.0",
+    "clone": "^2.1.2",
+    "lodash": "^4.17.15",
+    "validator": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/clone": "^0.1.30",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.7",
+    "@types/validator": "^10.11.3",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.1.0",
+    "tslib": "^1.10.0",
+    "tslint-config-alloy": "^0.2.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(/tests/.*|(\\.|/)test)\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
+    ]
+  }
+}
