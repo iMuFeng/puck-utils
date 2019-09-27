@@ -1,6 +1,6 @@
 {
   "name": "@puckjs/utils",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -18,16 +18,15 @@
     "publish": "npm publish --access=public"
   },
   "dependencies": {
+    "@types/clone": "^0.1.30",
+    "@types/validator": "^10.11.3",
     "async-validator": "^3.1.0",
     "clone": "^2.1.2",
-    "lodash": "^4.17.15",
     "validator": "^11.1.0"
   },
   "devDependencies": {
-    "@types/clone": "^0.1.30",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.7",
-    "@types/validator": "^10.11.3",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
