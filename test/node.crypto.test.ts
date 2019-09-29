@@ -17,15 +17,15 @@ test('sha512', () => {
 })
 
 test('hamc-md5', () => {
-  expect(crypto.shamac('hello', 'secret', 'md5')).toBe('ut5jhjxh7QsxZYBuzWrO/A==')
+  expect(crypto.hmac('hello', 'secret', 'md5')).toBe('ut5jhjxh7QsxZYBuzWrO/A==')
 })
 
 test('hamc-sha1', () => {
-  expect(crypto.shamac('hello', 'secret', 'sha1')).toBe('URIFXAX5RPhXVe/FzYlw4ZTp9Fs=')
+  expect(crypto.hmac('hello', 'secret', 'sha1')).toBe('URIFXAX5RPhXVe/FzYlw4ZTp9Fs=')
 })
 
 test('hamc-sha512', () => {
-  expect(crypto.shamac('hello', 'secret')).toBe('2xWVroimL9FR7By6gbmMOd+C2q57TLmCD0RtW/AvHc/KZoPYjKs+Jz9ZY6uOxGmnRrWxkIY3Ejn2fR5fmaeUQA==')
+  expect(crypto.hmac('hello', 'secret')).toBe('2xWVroimL9FR7By6gbmMOd+C2q57TLmCD0RtW/AvHc/KZoPYjKs+Jz9ZY6uOxGmnRrWxkIY3Ejn2fR5fmaeUQA==')
 })
 
 test('b64Encode', () => {
@@ -34,4 +34,15 @@ test('b64Encode', () => {
 
 test('b64Decode', () => {
   expect(crypto.b64Decode('aGVsbG8=')).toBe('hello')
+})
+
+const key = 'ce502198aca7d46f3bf3e502197d468b'
+const iv = '0123456789abcdef'
+
+test('aes encrypt', () => {
+  expect(crypto.encrypt('hello', key, iv)).toBe('tB+o62AbjpsjIsv/bHLadQ==')
+})
+
+test('aes decrypt', () => {
+  expect(crypto.decrypt('tB+o62AbjpsjIsv/bHLadQ==', key, iv)).toBe('hello')
 })
