@@ -1,6 +1,7 @@
 {
   "name": "@puckjs/utils",
-  "version": "1.2.3",
+  "description": "Personal assistant tool library",
+  "version": "1.3.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -9,19 +10,27 @@
   "publishConfig": {
     "access": "public"
   },
+  "homepage": "http://github.com/iMuFeng/puck-utils",
+  "author": "mufeng.me@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:iMuFeng/puck-utils.git"
+  },
   "license": "MIT",
   "scripts": {
     "build": "tsc -p .",
     "test": "jest",
     "clean": "rimraf lib",
-    "prebuild": "npm run clean",
+    "prebuild": "npm run test && npm run clean",
     "publish": "npm publish --access=public"
   },
   "dependencies": {
     "@types/clone": "^0.1.30",
+    "@types/nanoid": "^2.0.0",
     "@types/validator": "^10.11.3",
     "async-validator": "^3.1.0",
     "clone": "^2.1.2",
+    "nanoid": "^2.1.1",
     "validator": "^11.1.0"
   },
   "devDependencies": {
