@@ -46,20 +46,12 @@ function readdir (dir: string) {
   })
 }
 
+function sortByType (list: FSTree[]): FSTree[] {
+  return list.sort((a, b) => a.type >= b.type ? 1 : -1)
+}
+
 async function tree (dir: string, option: FSTreeOption = {}, root?: string): Promise<FSTree[]> {
   const list: FSTree[] = []
-
-  // if dir not existed or not directory
-  try {
-    const stats = await stat(dir)
-
-    if (!stats.isDirectory()) {
-      return list
-    }
-  } catch (_) {
-    return list
-  }
-
   const files = await readdir(dir)
 
   for (const file of files) {
@@ -88,11 +80,13 @@ async function tree (dir: string, option: FSTreeOption = {}, root?: string): Pro
 
     if (option.deep && type === FSTreeType.directory) {
       treeItem.children = await tree(absolutePath, option, rootPath)
+      sortByType(treeItem.children)
     }
 
     list.push(treeItem)
   }
 
+  sortByType(list)
   return list
 }
 

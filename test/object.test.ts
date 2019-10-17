@@ -7,11 +7,15 @@ const obj = {
   d: [1, 2, 3]
 }
 
-test('remove object nil field', () => {
+test('remove object\'s nil fields', () => {
   expect(object.removeNil(obj)).toStrictEqual({
     c: 'hello',
     d: [1, 2, 3]
   })
+})
+
+test('remove nil fields from non object', () => {
+  expect(object.removeNil([] as any)).toStrictEqual({})
 })
 
 test('peak fileds from object', () => {
@@ -26,4 +30,8 @@ test('peak fileds with alias from object', () => {
     c: 'hello',
     list: [1, 2, 3]
   })
+})
+
+test('peak fileds from non object', () => {
+  expect(object.peak([] as any, ['c'])).toStrictEqual({})
 })

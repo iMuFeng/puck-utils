@@ -41,3 +41,14 @@ test('valid rule', async () => {
   })
   expect(error).toBe(undefined)
 })
+
+test('empty rules', async () => {
+  const error = await validate({}, {
+    name: {
+      firstName: 'Jack',
+      lastName: 'Chen'
+    },
+    age: 1
+  })
+  expect(error).toBe(undefined)
+})
