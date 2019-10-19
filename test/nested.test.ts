@@ -45,6 +45,10 @@ test('flatten nested array', () => {
   expect(nested.flatten(nestedArray)).toStrictEqual(flattenNestedArray)
 })
 
+test('flatten empty array', () => {
+  expect(nested.flatten([])).toStrictEqual([])
+})
+
 test('search flattened nested array\'s ancestors', () => {
   expect(nested.ancestors(flattenNestedArray, '0.1.0.1')).toStrictEqual(ancestors)
 })

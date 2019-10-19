@@ -4,6 +4,10 @@ test('10 is number', () => {
   expect(type(10)).toBe('number')
 })
 
+test('new Number(10) is number', () => {
+  expect(type(new Number(10))).toBe('Number')
+})
+
 test('str is string', () => {
   expect(type('str')).toBe('string')
 })
@@ -34,6 +38,10 @@ test('Symbol(\'symbol\') is symbol', () => {
 
 test('() => {} is function', () => {
   expect(type(() => {})).toBe('function')
+})
+
+test('new Function() is function', () => {
+  expect(type(new Function())).toBe('function')
 })
 
 test('new Date() is date', () => {

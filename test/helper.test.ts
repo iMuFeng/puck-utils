@@ -52,6 +52,10 @@ test('{ x: 1 } is valid', () => {
   expect(helper.isValid({ x: 1 })).toBe(true)
 })
 
+test('Symbol() is valid', () => {
+  expect(helper.isValid(Symbol())).toBe(true)
+})
+
 test('null is nil', () => {
   expect(helper.isNil(null)).toBe(true)
 })
@@ -109,5 +113,7 @@ test('null is not PlainObject', () => {
 })
 
 test('function is not PlainObject', () => {
-  expect(helper.isPlainObject(() => {})).toBe(false)
+  const Person = function () {}
+  const person = new (Person as any)()
+  expect(helper.isPlainObject(person)).toBe(false)
 })
