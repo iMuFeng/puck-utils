@@ -12,7 +12,7 @@ function download () {
   })
 }
 
-test('file of tree must be LICENSE', async () => {
+test('file name must be LICENSE', async () => {
   const data = await nodeFs.tree(path.resolve(__dirname, '..'), {
     ignored: /(^|\/)(coverage|lib|node_modules|\.git|\..*)/,
     deep: true

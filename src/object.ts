@@ -5,34 +5,40 @@ export interface AnyMap {
   [key: string]: any
 }
 
-function peak (arg: AnyMap, fields: Array<string | string[]>): AnyMap {
+function peak (arg: AnyMap, fields: Array<string | string[]>, excludes: Array<string> = []): AnyMap {
   if (!helper.isObject(arg)) {
     return {}
   }
 
-  const fieldAlias: AnyMap = {}
-  const peakFields: string[] = []
-
-  fields.forEach(item => {
-    if (helper.isArray(item)) {
-      if (item.length > 0) {
-        const filed = item[0]
-        peakFields.push(filed)
-
-        if (item.length > 1) {
-          fieldAlias[filed] = item[1]
-        }
-      }
-    } else {
-      peakFields.push(item)
-    }
-  })
-
   const argCopy = clone<AnyMap>(arg)
+  const argKeys = Object.keys(argCopy)
+
+  const fieldAlias: AnyMap = {}
+  let peakFields: string[] = []
+
+  if (fields.length > 0) {
+    fields.forEach(item => {
+      if (helper.isArray(item)) {
+        if (item.length > 0) {
+          const filed = item[0]
+          peakFields.push(filed)
+
+          if (item.length > 1) {
+            fieldAlias[filed] = item[1]
+          }
+        }
+      } else {
+        peakFields.push(item)
+      }
+    })
+  } else {
+    peakFields = argKeys
+  }
+
   const newObj: AnyMap = {}
 
-  Object.keys(argCopy)
-    .filter(item => peakFields.includes(item))
+  argKeys
+    .filter(item => !excludes.includes(item) && peakFields.includes(item))
     .forEach(item => {
       const alias = fieldAlias[item]
 

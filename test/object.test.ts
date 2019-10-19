@@ -32,6 +32,14 @@ test('peak fileds with alias from object', () => {
   })
 })
 
+
+test('peak fileds from object with excludes', () => {
+  expect(object.peak(obj, [], ['a', 'b'])).toStrictEqual({
+    c: 'hello',
+    d: [1, 2, 3]
+  })
+})
+
 test('peak fileds from non object', () => {
   expect(object.peak([] as any, ['c'])).toStrictEqual({})
 })

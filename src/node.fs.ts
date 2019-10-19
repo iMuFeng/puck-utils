@@ -46,8 +46,14 @@ function readdir (dir: string) {
   })
 }
 
-function sortByType (list: FSTree[]): FSTree[] {
-  return list.sort((a, b) => a.type >= b.type ? 1 : -1)
+function sortBy (list: FSTree[]): FSTree[] {
+  return list.sort((a, b) => {
+    if (a.type !== b.type) {
+      return a.type > b.type ? 1 : -1
+    }
+
+    return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
+  })
 }
 
 async function tree (dir: string, option: FSTreeOption = {}, root?: string): Promise<FSTree[]> {
@@ -80,13 +86,13 @@ async function tree (dir: string, option: FSTreeOption = {}, root?: string): Pro
 
     if (option.deep && type === FSTreeType.directory) {
       treeItem.children = await tree(absolutePath, option, rootPath)
-      sortByType(treeItem.children)
+      sortBy(treeItem.children)
     }
 
     list.push(treeItem)
   }
 
-  sortByType(list)
+  sortBy(list)
   return list
 }
 
