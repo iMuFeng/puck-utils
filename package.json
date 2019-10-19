@@ -20,11 +20,10 @@
   "scripts": {
     "build": "tsc -p .",
     "test": "npm run lint && jest",
-    "cov": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "cov": "jest --coverage",
     "publib": "npm publish --access=public",
     "lint": "tslint --project . -c tslint.json --fix",
     "clean": "rimraf lib",
-    "precov": "npm run lint",
     "prebuild": "npm run test && npm run clean"
   },
   "dependencies": {
