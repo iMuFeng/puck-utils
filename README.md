@@ -1,6 +1,6 @@
 # Puck-utils
 
-[![Build Status](https://img.shields.io/travis/iMuFeng/puck-utils.svg)](https://travis-ci.org/iMuFeng/puck-utils) [![npm package](https://img.shields.io/npm/v/@puckjs/utils.svg)](https://www.npmjs.org/package/@puckjs/utils) [![npm downloads](http://img.shields.io/npm/dm/@puckjs/utils.svg)](https://www.npmjs.org/package/@puckjs/utils) [![Coveralls](https://img.shields.io/coveralls/iMuFeng/puck-utils.svg)](https://coveralls.io/github/iMuFeng/puck-utils)
+[![Build Status](https://github.com/iMuFeng/puck-utils/workflows/CI/badge.svg)](https://travis-ci.org/iMuFeng/puck-utils) [![npm package](https://img.shields.io/npm/v/@puckjs/utils.svg)](https://www.npmjs.org/package/@puckjs/utils) [![npm downloads](http://img.shields.io/npm/dm/@puckjs/utils.svg)](https://www.npmjs.org/package/@puckjs/utils) [![Coveralls](https://img.shields.io/coveralls/iMuFeng/puck-utils.svg)](https://coveralls.io/github/iMuFeng/puck-utils)
 
 Personal assistant tool library
 
