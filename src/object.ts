@@ -60,14 +60,15 @@ function removeNil (arg: AnyMap): AnyMap {
   const argCopy = clone<AnyMap>(arg)
   const newObj: AnyMap = {}
 
-  Object.keys(argCopy)
-    .forEach(field => {
-      const value = argCopy[field]
+  for (const field of Object.keys(argCopy)) {
+    const value = argCopy[field]
 
-      if (!helper.isNil(value)) {
-        newObj[field] = value
-      }
-    })
+    if (helper.isNil(value) || helper.isNaN(value)) {
+      continue
+    }
+
+    newObj[field] = value
+  }
 
   return newObj
 }

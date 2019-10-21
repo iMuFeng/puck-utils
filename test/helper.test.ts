@@ -117,3 +117,7 @@ test('function is not PlainObject', () => {
   const person = new (Person as any)()
   expect(helper.isPlainObject(person)).toBe(false)
 })
+
+test('parseInt(\'abc\') is not number', () => {
+  expect(helper.isNaN(parseInt('abc'))).toBe(true)
+})

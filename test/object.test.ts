@@ -4,7 +4,8 @@ const obj = {
   a: null,
   b: undefined,
   c: 'hello',
-  d: [1, 2, 3]
+  d: [1, 2, 3],
+  nan: parseInt('nan')
 }
 
 test('remove object\'s nil fields', () => {
@@ -34,7 +35,7 @@ test('peak fileds with alias from object', () => {
 
 
 test('peak fileds from object with excludes', () => {
-  expect(object.peak(obj, [], ['a', 'b'])).toStrictEqual({
+  expect(object.peak(obj, [], ['a', 'b', 'nan'])).toStrictEqual({
     c: 'hello',
     d: [1, 2, 3]
   })
