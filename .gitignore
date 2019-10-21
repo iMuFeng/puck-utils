@@ -2,6 +2,8 @@
 lib/
 node_modules/
 coverage/
+.unittest/
+
 .npmrc
 yarn.lock
 package-lock.json
