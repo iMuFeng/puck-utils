@@ -139,6 +139,16 @@ function isBool (arg: any): boolean {
   return isTrue(arg) || isFalse(arg)
 }
 
+function promisify <T>(fn: Function, receiver?: any): (...args: any[]) => Promise<T> {
+  return (...args: any[]): Promise<T> => {
+    return new Promise((resolve, reject) => {
+      fn.apply(receiver, [...args, (err: Error, res: T) => {
+        return err ? reject(err) : resolve(res)
+      }])
+    })
+  }
+}
+
 export default {
   ...validator,
   isArray,
@@ -163,5 +173,6 @@ export default {
   isEqual,
   isTrue,
   isFalse,
-  isBool
+  isBool,
+  promisify
 }

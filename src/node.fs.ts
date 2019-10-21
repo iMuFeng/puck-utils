@@ -1,5 +1,6 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import * as fs from 'fs-extra'
+import * as npath from 'path'
+import helper from './helper'
 
 export interface FSTreeOption {
   ignored?: RegExp
@@ -22,28 +23,12 @@ export interface FSTree {
   children?: FSTree[]
 }
 
-function stat (filePath: string) {
-  return new Promise<fs.Stats>((resolve, reject) => {
-    fs.stat(filePath, (err, stats) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(stats)
-      }
-    })
-  })
+function stat (path: string) {
+  return helper.promisify<fs.Stats>(fs.stat)(path)
 }
 
-function readdir (dir: string) {
-  return new Promise<string[]>((resolve, reject) => {
-    fs.readdir(dir, (err, files) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(files)
-      }
-    })
-  })
+function readdir (path: string) {
+  return helper.promisify<string[]>(fs.readdir)(path)
 }
 
 function sortBy (list: FSTree[]): FSTree[] {
@@ -56,13 +41,13 @@ function sortBy (list: FSTree[]): FSTree[] {
   })
 }
 
-async function tree (dir: string, option: FSTreeOption = {}, root?: string): Promise<FSTree[]> {
+async function tree (path: string, option: FSTreeOption = {}, root?: string): Promise<FSTree[]> {
   const list: FSTree[] = []
-  const files = await readdir(dir)
+  const files = await readdir(path)
 
   for (const file of files) {
-    const rootPath = root || dir
-    const absolutePath = path.resolve(dir, file)
+    const rootPath = root || path
+    const absolutePath = npath.resolve(path, file)
     const relativePath = absolutePath.replace(rootPath, '').replace(/^\//, '')
 
     if (option.ignored && option.ignored.test(relativePath)) {
@@ -72,8 +57,8 @@ async function tree (dir: string, option: FSTreeOption = {}, root?: string): Pro
     const stats = await stat(absolutePath)
 
     const type = stats.isDirectory() ? FSTreeType.directory : FSTreeType.file
-    const basename = path.basename(file)
-    const extname = path.extname(file).replace(/^\./, '')
+    const basename = npath.basename(file)
+    const extname = npath.extname(file).replace(/^\./, '')
 
     const treeItem: FSTree = {
       type,
@@ -96,9 +81,9 @@ async function tree (dir: string, option: FSTreeOption = {}, root?: string): Pro
   return list
 }
 
-function writeStream (input: fs.ReadStream, filePath: string) {
+function writeStream (input: fs.ReadStream, path: string) {
   return new Promise<void>((resolve, reject) => {
-    const output = fs.createWriteStream(filePath)
+    const output = fs.createWriteStream(path)
 
     input.on('data', chunk => {
       output.write(chunk)
@@ -116,8 +101,8 @@ function writeStream (input: fs.ReadStream, filePath: string) {
 }
 
 export default {
+  ...fs,
   stat,
-  readdir,
   tree,
   writeStream
 }

@@ -1,7 +1,11 @@
 import http from 'http'
 import * as path from 'path'
-import nodeFs from '../src/node.fs'
 import helper from '../src/helper'
+import nodeFs from '../src/node.fs'
+
+const ROOT_PATH = path.resolve(__dirname, '..')
+const TMP_PATH = path.resolve(ROOT_PATH, '.unittest')
+const LOGO_PATH = path.resolve(TMP_PATH, '0.jpg')
 
 const LOGOURL = 'http://instantlogosearch.ils.netdna-cdn.com/png?id=instantlogosearch-twitter'
 
@@ -13,8 +17,13 @@ function download () {
   })
 }
 
+test(`should create ${TMP_PATH}`, async () => {
+  await nodeFs.ensureDir(TMP_PATH)
+  expect(await nodeFs.pathExists(TMP_PATH)).toBe(true)
+})
+
 test('file name must be LICENSE', async () => {
-  const data = await nodeFs.tree(path.resolve(__dirname, '..'), {
+  const data = await nodeFs.tree(ROOT_PATH, {
     ignored: /(^|\/)(coverage|lib|node_modules|\.git|\..*)/,
     deep: true
   })
@@ -22,18 +31,27 @@ test('file name must be LICENSE', async () => {
 })
 
 test('should save stream to file', async () => {
-  const logoPath = path.resolve(__dirname, '../twitter.jpg')
   const res = await download()
-  await nodeFs.writeStream(res as any, logoPath)
-  const data = await nodeFs.stat(logoPath)
-  expect(data.isFile()).toBe(true)
+  await nodeFs.writeStream(res as any, LOGO_PATH)
+  const isExist = await nodeFs.pathExists(LOGO_PATH)
+  expect(isExist).toBe(true)
 })
 
-test('should can\'t get invalid file\'s stat', async () => {
+test('invalid.json is not exist', async () => {
+  expect(await nodeFs.pathExists('./invalid.json')).toBe(false)
+})
+
+test('can\'t get invalid.json\'s stat', async () => {
   try {
     const data = await nodeFs.stat('./invalid.json')
     expect(data.isFile()).toBe(false)
   } catch (err) {
     expect(helper.isError(err)).toBe(true)
   }
+})
+
+test(`should remove ${TMP_PATH}`, async () => {
+  await nodeFs.remove(TMP_PATH)
+  const isExist = await nodeFs.pathExists(TMP_PATH)
+  expect(isExist).toBe(false)
 })
