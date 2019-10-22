@@ -1,17 +1,17 @@
-import http from 'http'
+import https from 'https'
 import * as path from 'path'
 import helper from '../src/helper'
 import nodeFs from '../src/node.fs'
 
 const ROOT_PATH = path.resolve(__dirname, '..')
 const TMP_PATH = path.resolve(ROOT_PATH, '.unittest')
-const LOGO_PATH = path.resolve(TMP_PATH, '0.jpg')
+const LOGO_PATH = path.resolve(TMP_PATH, 'app.ico')
 
-const LOGOURL = 'http://instantlogosearch.ils.netdna-cdn.com/png?id=instantlogosearch-twitter'
+const LOGOURL = 'https://www.apple.com/favicon.ico'
 
 function download () {
   return new Promise((resolve) => {
-    http.get(LOGOURL, (res) => {
+    https.get(LOGOURL, (res) => {
       resolve(res)
     })
   })

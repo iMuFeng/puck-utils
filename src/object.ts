@@ -1,3 +1,4 @@
+import * as diff from 'deep-object-diff'
 import clone from './clone'
 import helper from './helper'
 
@@ -74,6 +75,7 @@ function removeNil (arg: AnyMap): AnyMap {
 }
 
 export default {
+  ...diff,
   peak,
   removeNil
 }

@@ -5,6 +5,7 @@ test('10 is number', () => {
 })
 
 test('new Number(10) is number', () => {
+  // tslint:disable-next-line: no-construct
   expect(type(new Number(10))).toBe('Number')
 })
 

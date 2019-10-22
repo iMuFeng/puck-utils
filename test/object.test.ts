@@ -8,6 +8,12 @@ const obj = {
   nan: parseInt('nan')
 }
 
+const diff = {
+  a: undefined,
+  b: undefined,
+  nan: undefined
+}
+
 test('remove object\'s nil fields', () => {
   expect(object.removeNil(obj)).toStrictEqual({
     c: 'hello',
@@ -43,4 +49,20 @@ test('peak fileds from object with excludes', () => {
 
 test('peak fileds from non object', () => {
   expect(object.peak([] as any, ['c'])).toStrictEqual({})
+})
+
+test('diff shoud strict equal diff', () => {
+  expect(object.diff(obj, object.removeNil(obj))).toStrictEqual(diff)
+})
+
+test('deletedDiff shoud strict equal diff', () => {
+  expect(object.deletedDiff(obj, object.removeNil(obj))).toStrictEqual(diff)
+})
+
+test('addedDiff shoud strict equal {}', () => {
+  expect(object.addedDiff(obj, object.removeNil(obj))).toStrictEqual({})
+})
+
+test('updatedDiff shoud strict equal {}', () => {
+  expect(object.updatedDiff(obj, object.removeNil(obj))).toStrictEqual({})
 })
