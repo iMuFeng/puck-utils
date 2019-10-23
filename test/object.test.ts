@@ -5,6 +5,7 @@ const obj = {
   b: undefined,
   c: 'hello',
   d: [1, 2, 3],
+  // tslint:disable-next-line: radix
   nan: parseInt('nan')
 }
 
@@ -65,4 +66,39 @@ test('addedDiff shoud strict equal {}', () => {
 
 test('updatedDiff shoud strict equal {}', () => {
   expect(object.updatedDiff(obj, object.removeNil(obj))).toStrictEqual({})
+})
+
+test('extend an object', () => {
+  expect(object.extend({
+    a: [1, 2, 3],
+    b: 'hi',
+    c: {
+      x: 1,
+      y: 'hello'
+    }
+  }, {
+    a: [2, 3, 4],
+    b: 'hi',
+    c: {
+      y: 'world',
+      z: true
+    }
+  })).toStrictEqual({
+    a: [2, 3, 4],
+    b: 'hi',
+    c: {
+      x: 1,
+      y: 'world',
+      z: true
+    }
+  })
+})
+
+test('can\'t extend a nil object', () => {
+  // @ts-ignore
+  expect(object.extend(null, { x: 1 })).toStrictEqual({})
+})
+
+test('can\'t extend a nil item to object', () => {
+  expect(object.extend({}, null)).toStrictEqual({})
 })

@@ -74,8 +74,44 @@ function removeNil (arg: AnyMap): AnyMap {
   return newObj
 }
 
+function extend (target: AnyMap = {}, ...args: any[]): AnyMap {
+  if (!target) {
+    return helper.isArray(args[0]) ? [] : {}
+  }
+
+  let src: any
+  let curr: any
+
+  for (const arg of args) {
+    if (!arg) {
+      continue
+    }
+
+    // tslint:disable-next-line: forin
+    for (const key in arg) {
+      src = target[key]
+      curr = arg[key]
+
+      if (src && src === curr) {
+        continue
+      }
+
+      if (helper.isArray(curr)) {
+        target[key] = extend([], curr)
+      } else if (helper.isObject(curr)) {
+        target[key] = extend(src && helper.isObject(src) ? src : {}, curr)
+      } else {
+        target[key] = curr
+      }
+    }
+  }
+
+  return target
+}
+
 export default {
   ...diff,
   peak,
-  removeNil
+  removeNil,
+  extend
 }
