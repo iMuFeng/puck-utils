@@ -1,4 +1,4 @@
-import helper from '../src/helper'
+import helper from '../src/helperExtend'
 
 test('18888888888 is phone number', () => {
   expect(helper.isMobilePhone('18888888888')).toBe(true)

@@ -1,5 +1,3 @@
-import * as validator from 'validator'
-
 import type from './type'
 
 /* @ts-ignore */
@@ -150,7 +148,6 @@ function promisify <T>(fn: Function, receiver?: any): (...args: any[]) => Promis
 }
 
 export default {
-  ...validator,
   isArray,
   isNaN,
   isBoolean,

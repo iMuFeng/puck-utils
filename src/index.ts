@@ -1,5 +1,5 @@
 import clone from './clone'
-import helper from './helper'
+import helper from './helperExtend'
 import nested from './nested'
 import nodeCrypto from './node.crypto'
 import nodeFs from './node.fs'
