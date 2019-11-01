@@ -19,6 +19,7 @@ export interface FSTree {
   name: string
   extname: string
   size: number
+  createdAt: number
   lastModified: number
   children?: FSTree[]
 }
@@ -66,6 +67,7 @@ async function tree (path: string, option: FSTreeOption = {}, root?: string): Pr
       name: basename,
       extname,
       size: stats.size,
+      createdAt: stats.birthtimeMs,
       lastModified: stats.mtimeMs
     }
 
