@@ -1,10 +1,12 @@
 import helper from '../src/helperExtend'
 
 test('18888888888 is phone number', () => {
+  // @ts-ignore
   expect(helper.isMobilePhone('18888888888')).toBe(true)
 })
 
 test('http://js.org is url', () => {
+  // @ts-ignore
   expect(helper.isURL('http://js.org')).toBe(true)
 })
 
