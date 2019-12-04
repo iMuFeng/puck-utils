@@ -4,6 +4,7 @@ import helper from './helper'
 
 export interface FSTreeOption {
   ignored?: RegExp
+  included?: RegExp
   deep?: boolean
   abspath?: boolean
 }
@@ -50,6 +51,10 @@ async function tree (path: string, option: FSTreeOption = {}, root?: string): Pr
     const rootPath = root || path
     const absolutePath = npath.resolve(path, file)
     const relativePath = absolutePath.replace(rootPath, '').replace(/^\//, '')
+
+    if (option.included && !option.included.test(relativePath)) {
+      continue
+    }
 
     if (option.ignored && option.ignored.test(relativePath)) {
       continue

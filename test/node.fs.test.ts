@@ -30,6 +30,13 @@ test('file name must be LICENSE', async () => {
   expect(data[2].name).toBe('LICENSE')
 })
 
+test('file name must be package.json', async () => {
+  const data = await nodeFs.tree(ROOT_PATH, {
+    included: /package\.json$/
+  })
+  expect(data[0].name).toBe('package.json')
+})
+
 test('should save stream to file', async () => {
   const res = await download()
   await nodeFs.writeStream(res as any, LOGO_PATH)
