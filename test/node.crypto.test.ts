@@ -38,11 +38,16 @@ test('b64Decode', () => {
 
 const key = 'ce502198aca7d46f3bf3e502197d468b'
 const iv = '0123456789abcdef'
+const output = 'tB+o62AbjpsjIsv/bHLadQ=='
 
 test('aes encrypt', () => {
-  expect(crypto.encrypt('hello', key, iv)).toBe('tB+o62AbjpsjIsv/bHLadQ==')
+  expect(crypto.encrypt('hello', key, iv)).toBe(output)
 })
 
-test('aes decrypt', () => {
-  expect(crypto.decrypt('tB+o62AbjpsjIsv/bHLadQ==', key, iv)).toBe('hello')
+test('aes decrypt string', () => {
+  expect(crypto.decrypt(output, key, iv)).toBe('hello')
+})
+
+test('aes decrypt buffer', () => {
+  expect(crypto.decrypt(Buffer.from(output, 'base64'), key, iv)).toBe('hello')
 })
