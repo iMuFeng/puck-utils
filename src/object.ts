@@ -6,7 +6,7 @@ export interface AnyMap {
   [key: string]: any
 }
 
-function peak (arg: AnyMap, fields: Array<string | string[]>, excludes: Array<string> = []): AnyMap {
+export function peak (arg: AnyMap, fields: Array<string | string[]>, excludes: Array<string> = []): AnyMap {
   if (!helper.isObject(arg)) {
     return {}
   }
@@ -53,7 +53,7 @@ function peak (arg: AnyMap, fields: Array<string | string[]>, excludes: Array<st
   return newObj
 }
 
-function removeNil (arg: AnyMap): AnyMap {
+export function removeNil (arg: AnyMap): AnyMap {
   if (!helper.isObject(arg)) {
     return {}
   }
@@ -74,7 +74,7 @@ function removeNil (arg: AnyMap): AnyMap {
   return newObj
 }
 
-function extend (target: AnyMap = {}, ...args: any[]): AnyMap {
+export function extend (target: AnyMap = {}, ...args: any[]): AnyMap {
   if (!target) {
     return helper.isArray(args[0]) ? [] : {}
   }
