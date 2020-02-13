@@ -1,7 +1,7 @@
 {
   "name": "@puckjs/utils",
   "description": "A library for nodejs basic develop",
-  "version": "1.16.0",
+  "version": "1.17.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -33,21 +33,22 @@
     "@types/validator": "^12.0.1",
     "async-validator": "^3.2.2",
     "clone": "^2.1.2",
+    "dayjs": "^1.8.20",
     "deep-object-diff": "^1.1.0",
     "fs-extra": "^8.1.0",
-    "nanoid": "^2.1.7",
-    "validator": "^12.1.0"
+    "nanoid": "^2.1.11",
+    "validator": "^12.2.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.23",
-    "@types/node": "^12.12.14",
+    "@types/jest": "^25.1.2",
+    "@types/node": "^13.7.1",
     "coveralls": "^3.0.9",
-    "jest": "^24.0.19",
+    "jest": "^25.1.0",
     "prettier": "^1.19.1",
-    "rimraf": "^3.0.0",
-    "ts-jest": "^24.2.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^25.2.0",
     "tslib": "^1.10.0",
-    "tslint": "^5.20.1",
+    "tslint": "^6.0.0",
     "tslint-config-alloy": "^0.2.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.2"
