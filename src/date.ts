@@ -9,7 +9,7 @@ export function unixTimestamp (): number {
   return Math.floor(timestamp() / 1e3)
 }
 
-export default function (arg: string | number | undefined): dayjs.Dayjs {
+export default function (arg?: string | number): dayjs.Dayjs {
   if (helper.isNumber(arg)) {
     const unixts = Number(arg) > 0 ? Number(arg) : unixTimestamp()
     return dayjs.unix(unixts)
