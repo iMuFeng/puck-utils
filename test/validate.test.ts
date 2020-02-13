@@ -1,4 +1,4 @@
-import validate from '../src/validate'
+import validate, { optional } from '../src/validate'
 
 test('invalid rule', async () => {
   const error = await validate({
@@ -51,4 +51,35 @@ test('empty rules', async () => {
     age: 1
   })
   expect(error).toBe(undefined)
+})
+
+test('optional rule', async () => {
+  const error = await validate({
+    name: [
+      {
+        validator: optional,
+        message: 'invalid_name'
+      }
+    ]
+  }, {
+    name: null
+  })
+  expect(error).toStrictEqual(undefined)
+})
+
+test('optional rule', async () => {
+  const error = await validate({
+    name: [
+      {
+        validator: optional,
+        message: 'invalid_name'
+      }
+    ]
+  }, {
+    name: ''
+  })
+  expect(error).toStrictEqual({
+    field: 'name',
+    error: 'invalid_name'
+  })
 })
