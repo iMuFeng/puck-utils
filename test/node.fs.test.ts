@@ -1,4 +1,4 @@
-import https from 'https'
+import * as https from 'https'
 import * as path from 'path'
 import helper from '../src/helper'
 import nodeFs from '../src/node.fs'

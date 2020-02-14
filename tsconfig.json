@@ -4,7 +4,7 @@
     "target": "es2017",
     "module": "commonjs",
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true,

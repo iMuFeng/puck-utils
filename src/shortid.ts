@@ -1,4 +1,5 @@
-import generate from 'nanoid/generate'
+// @ts-ignore
+import * as generate from 'nanoid/generate'
 
 const alphabet = 'ModuleSymbhasOwnPr0123456789ABCDEFGHNRVfgctiUvzKqYTJkLxpZXIjQW'
 
