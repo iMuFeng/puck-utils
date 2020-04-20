@@ -1,8 +1,8 @@
-// @ts-ignore
-import * as generate from 'nanoid/generate'
+import { customAlphabet } from 'nanoid'
 
 const alphabet = 'ModuleSymbhasOwnPr0123456789ABCDEFGHNRVfgctiUvzKqYTJkLxpZXIjQW'
 
 export default (len = 16): string => {
-  return generate(alphabet, len)
+  const nanoid = customAlphabet(alphabet, len)
+  return nanoid()
 }
