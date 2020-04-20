@@ -1,7 +1,7 @@
 {
   "name": "@puckjs/utils",
   "description": "A library for nodejs basic develop",
-  "version": "1.20.0",
+  "version": "1.20.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@types/clone": "^0.1.30",
-    "@types/fs-extra": "^9.0.0",
+    "@types/fs-extra": "^8.1.0",
     "@types/nanoid": "^2.1.0",
     "@types/validator": "^13.0.0",
     "async-validator": "^3.2.2",
