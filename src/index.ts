@@ -8,7 +8,6 @@ import object from './object'
 import parse from './parse'
 import qs from './qs'
 import random from './random'
-import shortid from './shortid'
 import type from './type'
 import validate from './validate'
 
@@ -20,7 +19,6 @@ export {
   parse,
   qs,
   random,
-  shortid,
   type,
   nodeCrypto,
   nodeFs,
