@@ -64,3 +64,7 @@ test('init with max value', () => {
   const value = parse.int(100, 10, 30)
   expect(value).toBe(30)
 })
+
+test('html to text', () => {
+  expect(parse.htmlToText('<a href="#">hello</a>')).toBe('hello')
+})
