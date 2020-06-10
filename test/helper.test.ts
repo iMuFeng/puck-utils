@@ -66,6 +66,10 @@ test('undefined is nil', () => {
   expect(helper.isNil(undefined)).toBe(true)
 })
 
+test('false is not nil', () => {
+  expect(helper.isNil(false)).toBe(false)
+})
+
 test('abc is equal abc', () => {
   expect(helper.isEqual('abc', 'abc')).toBe(true)
 })
