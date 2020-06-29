@@ -1,7 +1,7 @@
 {
   "name": "@puckjs/utils",
   "description": "A library for nodejs basic develop",
-  "version": "1.41.0",
+  "version": "2.0.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -27,25 +27,17 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@types/clone": "^0.1.30",
-    "@types/fs-extra": "^9.0.1",
-    "@types/nanoid": "^2.1.0",
-    "@types/validator": "^13.0.0",
     "async-validator": "^3.2.2",
     "clone": "^2.1.2",
     "dayjs": "^1.8.28",
-    "deep-object-diff": "^1.1.0",
-    "fs-extra": "^9.0.0",
-    "ms": "^2.1.2",
-    "nanoid": "^3.1.9",
-    "validator": "^13.0.0"
+    "deep-object-diff": "^1.1.0"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.3",
-    "@types/ms": "^0.7.31",
+    "@types/clone": "^0.1.30",
+    "@types/jest": "^26.0.3",
     "@types/node": "^13.7.1",
     "coveralls": "^3.0.9",
-    "jest": "^26.0.1",
+    "jest": "^26.1.0",
     "prettier": "^2.0.4",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.1.0",
@@ -53,7 +45,7 @@
     "tslint": "^6.0.0",
     "tslint-config-alloy": "^0.2.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.5"
   },
   "jest": {
     "transform": {

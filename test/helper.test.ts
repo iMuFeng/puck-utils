@@ -1,14 +1,4 @@
-import helper from '../src/helperExtend'
-
-test('18888888888 is phone number', () => {
-  // @ts-ignore
-  expect(helper.isMobilePhone('18888888888')).toBe(true)
-})
-
-test('http://js.org is url', () => {
-  // @ts-ignore
-  expect(helper.isURL('http://js.org')).toBe(true)
-})
+import helper from '../src/helper'
 
 test('\' \' is empty', () => {
   expect(helper.isEmpty(' ')).toBe(true)
@@ -40,6 +30,11 @@ test('boolean is not empty', () => {
 
 test('number is not empty', () => {
   expect(helper.isEmpty(0)).toBe(false)
+})
+
+test('file is empty', () => {
+  const file = new File([], 'test.kit')
+  expect(helper.isEmpty(file)).toBe(true)
 })
 
 test('str is valid', () => {
@@ -82,8 +77,16 @@ test('true is bool', () => {
   expect(helper.isBool('true')).toBe(true)
 })
 
+test('1 is bool', () => {
+  expect(helper.isBool(1)).toBe(true)
+})
+
 test('false is bool', () => {
   expect(helper.isBool('false')).toBe(true)
+})
+
+test('0 is bool', () => {
+  expect(helper.isBool(0)).toBe(true)
 })
 
 test('new Set() is Set', () => {
@@ -116,6 +119,25 @@ test('{} is PlainObject', () => {
 
 test('null is not PlainObject', () => {
   expect(helper.isPlainObject(null)).toBe(false)
+})
+
+test('override constructor is not PlainObject', () => {
+  const obj = {
+    constructor: undefined
+  }
+  expect(helper.isPlainObject(obj)).toBe(false)
+})
+
+test('override constructor prototype is not PlainObject', () => {
+  const Cls = function () {}
+  // @ts-ignore
+  Cls.prototype = undefined
+
+  const obj = {
+    constructor: Cls
+  }
+
+  expect(helper.isPlainObject(obj)).toBe(false)
 })
 
 test('function is not PlainObject', () => {

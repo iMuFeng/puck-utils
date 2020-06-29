@@ -32,7 +32,17 @@ test('number', () => {
   expect(/^[0-9]{6}$/.test(str)).toBe(true)
 })
 
+test('number without length', () => {
+  const str = random.number()
+  expect(/^[0-9]{6}$/.test(str)).toBe(true)
+})
+
 test('hex string', () => {
   const str = random.hex(len)
   expect(/^[0-9a-f]{6}$/.test(str)).toBe(true)
+})
+
+test('hex string without length', () => {
+  const str = random.hex()
+  expect(/^[0-9a-f]{12}$/.test(str)).toBe(true)
 })

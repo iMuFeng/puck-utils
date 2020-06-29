@@ -2,7 +2,6 @@ import type from './type'
 
 /* @ts-ignore */
 const whiteSpaceRegx = /^[\s\f\n\r\t\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff\x09\x0a\x0b\x0c\x0d\x20\xa0]+$/
-const toString = Object.prototype.toString
 
 export function isBoolean (arg: any): boolean {
   return type(arg) === 'boolean'
@@ -94,24 +93,22 @@ export function isEmpty (arg: any): boolean {
     return arg.length === 0
   }
 
-  if (arg.toString === toString) {
-    switch (arg.toString()) {
-      case '[object File]':
-      case '[object Map]':
-      case '[object Set]': {
-        return arg.size === 0
-      }
-
-      case '[object Object]': {
-        for (const key in arg) {
-          if (Object.hasOwnProperty.call(arg, key)) return false
-        }
-        return true
-      }
-
-      default:
-        break
+  switch (type(arg)) {
+    case 'file':
+    case 'map':
+    case 'set': {
+      return arg.size === 0
     }
+
+    case 'object': {
+      for (const key in arg) {
+        if (Object.hasOwnProperty.call(arg, key)) return false
+      }
+      return true
+    }
+
+    default:
+      break
   }
 
   return false
@@ -137,16 +134,6 @@ export function isBool (arg: any): boolean {
   return isTrue(arg) || isFalse(arg)
 }
 
-export function promisify <T>(fn: Function, receiver?: any): (...args: any[]) => Promise<T> {
-  return (...args: any[]): Promise<T> => {
-    return new Promise((resolve, reject) => {
-      fn.apply(receiver, [...args, (err: Error, res: T) => {
-        return err ? reject(err) : resolve(res)
-      }])
-    })
-  }
-}
-
 export default {
   isArray,
   isNaN,
@@ -170,6 +157,5 @@ export default {
   isEqual,
   isTrue,
   isFalse,
-  isBool,
-  promisify
+  isBool
 }

@@ -6,7 +6,7 @@ A library for nodejs basic develop
 
 ## Installation and Usage
 
-Install the library with `npm install @puckjs/utils`
+Install the library with `npm install @puckjs/utils` or `yarn add @puckjs/utils`
 
 #### No ES6
 
@@ -27,8 +27,6 @@ helper.isEmpty([])
 import helper from '@puckjs/utils/lib/helper'
 helper.isEmpty([])
 ```
-
-The files which start with `node.` can only be used on `nodejs` server side.
 
 ## Tests
 

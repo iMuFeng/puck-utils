@@ -51,6 +51,11 @@ test('init', () => {
 })
 
 test('init with default value', () => {
+  const value = parse.int(1, 10)
+  expect(value).toBe(1)
+})
+
+test('init with default value and max value', () => {
   const value = parse.int('a', 10, 30)
   expect(value).toBe(10)
 })
