@@ -1,4 +1,4 @@
-import schema, { RuleItem, Rules } from 'async-validator'
+import schema, { RuleItem, Rules, ValidateOption } from 'async-validator'
 import helper from './helper'
 
 export type ValidateRules = Rules
@@ -8,7 +8,7 @@ export interface ValidateData {
   [key: string]: any
 }
 
-interface ValidateError {
+export interface ValidateError {
   field?: string
   message?: string
 }
@@ -17,7 +17,7 @@ export const optional = (_: RuleItem, value: any) => {
   return !(!helper.isNil(value) && helper.isEmpty(value))
 }
 
-export default async (rules: ValidateRules, data: ValidateData): Promise<ValidateError | void> => {
+export default async (rules: ValidateRules, data: ValidateData, option?: ValidateOption): Promise<ValidateError | void> => {
   if (helper.isEmpty(rules)) {
     return
   }
@@ -25,7 +25,11 @@ export default async (rules: ValidateRules, data: ValidateData): Promise<Validat
   const validator = new schema(rules)
 
   try {
-    await validator.validate(data, { first: true })
+    await validator.validate(data, {
+      first: true,
+      suppressWarning: true,
+      ...option
+    })
   } catch ({ errors }) {
     return errors[0]
   }
