@@ -74,7 +74,7 @@ export function removeNil (arg: AnyMap): AnyMap {
   return newObj
 }
 
-export function extend (target: AnyMap = {}, ...args: any[]): AnyMap {
+export function extend (target: AnyMap, ...args: any[]): AnyMap {
   if (!target) {
     return helper.isArray(args[0]) ? [] : {}
   }

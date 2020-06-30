@@ -10,7 +10,7 @@ test('invalid rule', async () => {
   })
   expect(error).toStrictEqual({
     field: 'name',
-    error: 'invalid_name'
+    message: 'invalid_name'
   })
 })
 
@@ -53,7 +53,7 @@ test('empty rules', async () => {
   expect(error).toBe(undefined)
 })
 
-test('optional rule', async () => {
+test('optional rule with null', async () => {
   const error = await validate({
     name: [
       {
@@ -65,6 +65,23 @@ test('optional rule', async () => {
     name: null
   })
   expect(error).toStrictEqual(undefined)
+})
+
+test('optional rule with emtpy string', async () => {
+  const error = await validate({
+    name: [
+      {
+        validator: optional,
+        message: 'invalid_name'
+      }
+    ]
+  }, {
+    name: ''
+  })
+  expect(error).toStrictEqual({
+    field: 'name',
+    message: 'invalid_name'
+  })
 })
 
 test('optional rule', async () => {
@@ -80,6 +97,6 @@ test('optional rule', async () => {
   })
   expect(error).toStrictEqual({
     field: 'name',
-    error: 'invalid_name'
+    message: 'invalid_name'
   })
 })

@@ -1,7 +1,7 @@
 {
   "name": "@puckjs/utils",
   "description": "A library for nodejs basic develop",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -29,7 +29,6 @@
   "dependencies": {
     "async-validator": "^3.2.2",
     "clone": "^2.1.2",
-    "dayjs": "^1.8.28",
     "deep-object-diff": "^1.1.0"
   },
   "devDependencies": {

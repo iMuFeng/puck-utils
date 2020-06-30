@@ -94,9 +94,14 @@ test('extend an object', () => {
   })
 })
 
-test('can\'t extend a nil object', () => {
+test('can\'t extend undefined', () => {
   // @ts-ignore
-  expect(object.extend(null, { x: 1 })).toStrictEqual({})
+  expect(object.extend(undefined, { x: 1 })).toStrictEqual({})
+})
+
+test('can\'t extend null', () => {
+  // @ts-ignore
+  expect(object.extend(null, [])).toStrictEqual([])
 })
 
 test('can\'t extend a nil item to object', () => {
