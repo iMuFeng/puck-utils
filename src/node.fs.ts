@@ -2,24 +2,36 @@ import * as fs from 'fs-extra'
 import * as npath from 'path'
 import helper from './helper'
 
-export interface FSTreeOption {
-  ignored?: RegExp
-  included?: RegExp
-  deep?: boolean
-  abspath?: boolean
-}
 
 export enum FSTreeType {
   file = 'file',
   directory = 'directory'
 }
 
-export interface FSTree {
+interface FSTreeBase {
   type: FSTreeType
-  path: string
   name: string
   extname: string
   size: number
+}
+
+export interface FSTreeFilterOption extends FSTreeBase {
+  absolutePath: string
+  relativePath: string
+}
+
+export interface FSTreeOption {
+  /*! @deprecated */
+  ignored?: RegExp
+
+  included?: RegExp
+  filter?: (option: FSTreeFilterOption) => boolean
+  deep?: boolean
+}
+
+export interface FSTree extends FSTreeBase {
+  absolutePath: string
+  path: string
   createdAt: number
   lastModified: number
   children?: FSTree[]
@@ -56,22 +68,35 @@ async function tree (path: string, option: FSTreeOption = {}, root?: string): Pr
       continue
     }
 
-    if (option.ignored && option.ignored.test(relativePath)) {
-      continue
-    }
-
     const stats = await stat(absolutePath)
 
     const type = stats.isDirectory() ? FSTreeType.directory : FSTreeType.file
-    const basename = npath.basename(file)
+    const name = npath.basename(file)
     const extname = npath.extname(file).replace(/^\./, '')
+    const size = stats.size
+
+    if (option.filter) {
+      const valid = option.filter({
+        type,
+        absolutePath,
+        relativePath,
+        name,
+        extname,
+        size
+      })
+
+      if (!valid) {
+        continue
+      }
+    }
 
     const treeItem: FSTree = {
       type,
-      path: option.abspath ? absolutePath : relativePath,
-      name: basename,
+      absolutePath,
+      path: relativePath,
+      name,
       extname,
-      size: stats.size,
+      size,
       createdAt: stats.birthtimeMs,
       lastModified: stats.mtimeMs
     }

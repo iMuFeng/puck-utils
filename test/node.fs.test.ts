@@ -24,7 +24,7 @@ test(`should create ${TMP_PATH}`, async () => {
 
 test('file name must be LICENSE', async () => {
   const data = await nodeFs.tree(ROOT_PATH, {
-    ignored: /(^|\/)(coverage|lib|node_modules|\.git|\..*)/,
+    included: /[^|.git|.github|.unittest|coverage|lib|node_modules]/,
     deep: true
   })
   expect(data[2].name).toBe('LICENSE')
