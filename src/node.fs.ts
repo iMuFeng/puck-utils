@@ -10,14 +10,11 @@ export enum FSTreeType {
 
 interface FSTreeBase {
   type: FSTreeType
+  path: string
+  relative: string
   name: string
   extname: string
   size: number
-}
-
-export interface FSTreeFilterOption extends FSTreeBase {
-  absolutePath: string
-  relativePath: string
 }
 
 export interface FSTreeOption {
@@ -25,13 +22,11 @@ export interface FSTreeOption {
   ignored?: RegExp
 
   included?: RegExp
-  filter?: (option: FSTreeFilterOption) => boolean
+  filter?: (option: FSTreeBase) => boolean
   deep?: boolean
 }
 
 export interface FSTree extends FSTreeBase {
-  absolutePath: string
-  path: string
   createdAt: number
   lastModified: number
   children?: FSTree[]
@@ -78,8 +73,8 @@ async function tree (path: string, option: FSTreeOption = {}, root?: string): Pr
     if (option.filter) {
       const valid = option.filter({
         type,
-        absolutePath,
-        relativePath,
+        path: absolutePath,
+        relative: relativePath,
         name,
         extname,
         size
@@ -92,8 +87,8 @@ async function tree (path: string, option: FSTreeOption = {}, root?: string): Pr
 
     const treeItem: FSTree = {
       type,
-      absolutePath,
-      path: relativePath,
+      path: absolutePath,
+      relative: relativePath,
       name,
       extname,
       size,
