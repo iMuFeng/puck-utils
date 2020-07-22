@@ -12,7 +12,7 @@ function flatten (array: AnyMap[], parentIndex = '0', field = 'children'): AnyMa
     const _index = `${parentIndex}.${index}`
 
     newObjs.push({
-      ...object.peak(item, [], [field]),
+      ...object.pick(item, [], [field]),
       _index
     })
 

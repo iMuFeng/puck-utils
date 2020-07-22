@@ -6,7 +6,7 @@ export interface AnyMap {
   [key: string]: any
 }
 
-export function peak (arg: AnyMap, fields: Array<string | string[]>, excludes: Array<string> = []): AnyMap {
+export function pick (arg: AnyMap, fields: Array<string | string[]>, excludes: Array<string> = []): AnyMap {
   if (!helper.isObject(arg)) {
     return {}
   }
@@ -15,31 +15,31 @@ export function peak (arg: AnyMap, fields: Array<string | string[]>, excludes: A
   const argKeys = Object.keys(argCopy)
 
   const fieldAlias: AnyMap = {}
-  let peakFields: string[] = []
+  let picked: string[] = []
 
   if (fields.length > 0) {
     fields.forEach(item => {
       if (helper.isArray(item)) {
         if (item.length > 0) {
           const filed = item[0]
-          peakFields.push(filed)
+          picked.push(filed)
 
           if (item.length > 1) {
             fieldAlias[filed] = item[1]
           }
         }
       } else {
-        peakFields.push(item)
+        picked.push(item)
       }
     })
   } else {
-    peakFields = argKeys
+    picked = argKeys
   }
 
   const newObj: AnyMap = {}
 
   argKeys
-    .filter(item => !excludes.includes(item) && peakFields.includes(item))
+    .filter(item => !excludes.includes(item) && picked.includes(item))
     .forEach(item => {
       const alias = fieldAlias[item]
 
@@ -111,7 +111,7 @@ export function extend (target: AnyMap, ...args: any[]): AnyMap {
 
 export default {
   ...diff,
-  peak,
+  pick,
   removeNil,
   extend
 }

@@ -26,30 +26,30 @@ test('remove nil fields from non object', () => {
   expect(object.removeNil([] as any)).toStrictEqual({})
 })
 
-test('peak fileds from object', () => {
-  expect(object.peak(obj, ['c', 'd'])).toStrictEqual({
+test('pick fileds from object', () => {
+  expect(object.pick(obj, ['c', 'd'])).toStrictEqual({
     c: 'hello',
     d: [1, 2, 3]
   })
 })
 
-test('peak fileds with alias from object', () => {
-  expect(object.peak(obj, ['c', ['d', 'list']])).toStrictEqual({
+test('pick fileds with alias from object', () => {
+  expect(object.pick(obj, ['c', ['d', 'list']])).toStrictEqual({
     c: 'hello',
     list: [1, 2, 3]
   })
 })
 
 
-test('peak fileds from object with excludes', () => {
-  expect(object.peak(obj, [], ['a', 'b', 'nan'])).toStrictEqual({
+test('pick fileds from object with excludes', () => {
+  expect(object.pick(obj, [], ['a', 'b', 'nan'])).toStrictEqual({
     c: 'hello',
     d: [1, 2, 3]
   })
 })
 
-test('peak fileds from non object', () => {
-  expect(object.peak([] as any, ['c'])).toStrictEqual({})
+test('pick fileds from non object', () => {
+  expect(object.pick([] as any, ['c'])).toStrictEqual({})
 })
 
 test('diff shoud strict equal diff', () => {
