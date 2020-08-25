@@ -12,22 +12,13 @@ import {
 } from '../src/http-error'
 
 const json = {
+  code: 'code',
   message: 'message',
-  response: {
-    code: 'code',
-    errors: undefined,
-    message: 'message'
-  }
+  errors: undefined
 }
 
 test('http error status', () => {
   expect(new HttpError('message').getStatus()).toBe(500)
-})
-
-test('http error response', () => {
-  expect(new HttpError('message').getResponse()).toStrictEqual({
-    message: 'message'
-  })
 })
 
 test('bad request error', () => {

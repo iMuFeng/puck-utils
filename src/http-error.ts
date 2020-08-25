@@ -9,31 +9,32 @@ interface HttpResponse {
 
 export class HttpError extends Error {
   status: HttpStatus
-  response: HttpResponse
+  code?: string
+  message: string
+  errors?: Record<string, any> | Record<string, any>[]
 
   public constructor(
     objectOrError: string | HttpResponse,
     status = HttpStatus.INTERNAL_SERVER_ERROR
   ) {
     super()
+    const { code, message, errors } = HttpError.createBody(objectOrError)
     this.status = status
-    this.response = HttpError.createBody(objectOrError)
-    this.message = this.response.message
+    this.code = code
+    this.message = message
+    this.errors = errors
   }
 
   public getStatus() {
     return this.status
   }
 
-  public getResponse() {
-    return this.response
-  }
-
   public toJSON() {
     return {
       status: this.status,
+      code: this.code,
       message: this.message,
-      response: this.response
+      errors: this.errors
     }
   }
 
