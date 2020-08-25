@@ -4,10 +4,12 @@ const obj = {
   a: {
     w: 'hello'
   },
-  b: [{
-    x: 2,
-    y: true
-  }]
+  b: [
+    {
+      x: 2,
+      y: true
+    }
+  ]
 }
 
 test('clone nested object', () => {
@@ -20,8 +22,10 @@ test('clone nested object', () => {
 
   expect(obj.a.w).toBe('hello')
   expect(copyObj.a.w).toBe('world')
-  expect(copyObj.b).toStrictEqual([{
-    x: 2,
-    y: true
-  }])
+  expect(copyObj.b).toStrictEqual([
+    {
+      x: 2,
+      y: true
+    }
+  ])
 })

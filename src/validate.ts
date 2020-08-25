@@ -17,7 +17,11 @@ export const optional = (_: RuleItem, value: any) => {
   return !(!helper.isNil(value) && helper.isEmpty(value))
 }
 
-export default async (rules: ValidateRules, data: ValidateData, option?: ValidateOption): Promise<ValidateError | void> => {
+export default async (
+  rules: ValidateRules,
+  data: ValidateData,
+  option?: ValidateOption
+): Promise<ValidateError | void> => {
   if (helper.isEmpty(rules)) {
     return
   }

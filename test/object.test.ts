@@ -15,7 +15,7 @@ const diff = {
   nan: undefined
 }
 
-test('remove object\'s nil fields', () => {
+test("remove object's nil fields", () => {
   expect(object.removeNil(obj)).toStrictEqual({
     c: 'hello',
     d: [1, 2, 3]
@@ -39,7 +39,6 @@ test('pick fileds with alias from object', () => {
     list: [1, 2, 3]
   })
 })
-
 
 test('pick fileds from object with excludes', () => {
   expect(object.pick(obj, [], ['a', 'b', 'nan'])).toStrictEqual({
@@ -69,21 +68,26 @@ test('updatedDiff shoud strict equal {}', () => {
 })
 
 test('extend an object', () => {
-  expect(object.extend({
-    a: [1, 2, 3],
-    b: 'hi',
-    c: {
-      x: 1,
-      y: 'hello'
-    }
-  }, {
-    a: [2, 3, 4],
-    b: 'hi',
-    c: {
-      y: 'world',
-      z: true
-    }
-  })).toStrictEqual({
+  expect(
+    object.extend(
+      {
+        a: [1, 2, 3],
+        b: 'hi',
+        c: {
+          x: 1,
+          y: 'hello'
+        }
+      },
+      {
+        a: [2, 3, 4],
+        b: 'hi',
+        c: {
+          y: 'world',
+          z: true
+        }
+      }
+    )
+  ).toStrictEqual({
     a: [2, 3, 4],
     b: 'hi',
     c: {
@@ -94,16 +98,16 @@ test('extend an object', () => {
   })
 })
 
-test('can\'t extend undefined', () => {
+test("can't extend undefined", () => {
   // @ts-ignore
   expect(object.extend(undefined, { x: 1 })).toStrictEqual({})
 })
 
-test('can\'t extend null', () => {
+test("can't extend null", () => {
   // @ts-ignore
   expect(object.extend(null, [])).toStrictEqual([])
 })
 
-test('can\'t extend a nil item to object', () => {
+test("can't extend a nil item to object", () => {
   expect(object.extend({}, null)).toStrictEqual({})
 })

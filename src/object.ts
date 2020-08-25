@@ -2,19 +2,19 @@ import * as diff from 'deep-object-diff'
 import clone from './clone'
 import helper from './helper'
 
-export interface AnyMap {
-  [key: string]: any
-}
-
-export function pick (arg: AnyMap, fields: Array<string | string[]>, excludes: Array<string> = []): AnyMap {
+export function pick(
+  arg: Record<string, any>,
+  fields: Array<string | string[]>,
+  excludes: Array<string> = []
+): Record<string, any> {
   if (!helper.isObject(arg)) {
     return {}
   }
 
-  const argCopy = clone<AnyMap>(arg)
+  const argCopy = clone<Record<string, any>>(arg)
   const argKeys = Object.keys(argCopy)
 
-  const fieldAlias: AnyMap = {}
+  const fieldAlias: Record<string, any> = {}
   let picked: string[] = []
 
   if (fields.length > 0) {
@@ -36,7 +36,7 @@ export function pick (arg: AnyMap, fields: Array<string | string[]>, excludes: A
     picked = argKeys
   }
 
-  const newObj: AnyMap = {}
+  const newObj: Record<string, any> = {}
 
   argKeys
     .filter(item => !excludes.includes(item) && picked.includes(item))
@@ -53,13 +53,13 @@ export function pick (arg: AnyMap, fields: Array<string | string[]>, excludes: A
   return newObj
 }
 
-export function removeNil (arg: AnyMap): AnyMap {
+export function removeNil(arg: Record<string, any>): Record<string, any> {
   if (!helper.isObject(arg)) {
     return {}
   }
 
-  const argCopy = clone<AnyMap>(arg)
-  const newObj: AnyMap = {}
+  const argCopy = clone<Record<string, any>>(arg)
+  const newObj: Record<string, any> = {}
 
   for (const field of Object.keys(argCopy)) {
     const value = argCopy[field]
@@ -74,7 +74,10 @@ export function removeNil (arg: AnyMap): AnyMap {
   return newObj
 }
 
-export function extend (target: AnyMap, ...args: any[]): AnyMap {
+export function extend(
+  target: Record<string, any>,
+  ...args: any[]
+): Record<string, any> {
   if (!target) {
     return helper.isArray(args[0]) ? [] : {}
   }

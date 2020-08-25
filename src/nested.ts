@@ -1,8 +1,12 @@
 import helper from './helper'
-import object, { AnyMap } from './object'
+import object from './object'
 
-function flatten (array: AnyMap[], parentIndex = '0', field = 'children'): AnyMap[] {
-  let newObjs: AnyMap[] = []
+function flatten(
+  array: Record<string, any>[],
+  parentIndex = '0',
+  field = 'children'
+): Record<string, any>[] {
+  let newObjs: Record<string, any>[] = []
 
   if (array.length < 1) {
     return newObjs
@@ -24,7 +28,7 @@ function flatten (array: AnyMap[], parentIndex = '0', field = 'children'): AnyMa
   return newObjs
 }
 
-function ancestors (array: AnyMap[], index: string): any[] {
+function ancestors(array: Record<string, any>[], index: string): any[] {
   const searches: any[] = []
   const indexList = index.split('.')
 
@@ -39,10 +43,13 @@ function ancestors (array: AnyMap[], index: string): any[] {
   return searches
 }
 
-function brothers (array: AnyMap[], index: string): AnyMap[] {
+function brothers(
+  array: Record<string, any>[],
+  index: string
+): Record<string, any>[] {
   const indexRegx = index
     .replace(/^0/, '^0')
-    .replace(/\.\d+$/, '\.\\d+$')
+    .replace(/\.\d+$/, '.\\d+$')
     .replace(/\./g, '\\.')
   return array.filter(item => new RegExp(indexRegx).test(item._index))
 }

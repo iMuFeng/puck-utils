@@ -1,4 +1,4 @@
-import helper from "./helper"
+import helper from './helper'
 
 const second = 1
 // tslint:disable-next-line: no-magic-numbers

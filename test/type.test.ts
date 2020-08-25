@@ -33,12 +33,16 @@ test('new Map() is map', () => {
   expect(type(new Map())).toBe('map')
 })
 
-test('Symbol(\'symbol\') is symbol', () => {
+test("Symbol('symbol') is symbol", () => {
   expect(type(Symbol('symbol'))).toBe('symbol')
 })
 
 test('() => {} is function', () => {
-  expect(type(() => {})).toBe('function')
+  expect(
+    type(() => {
+      // @ts-ignore
+    })
+  ).toBe('function')
 })
 
 test('new Function() is function', () => {

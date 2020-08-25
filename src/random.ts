@@ -14,7 +14,7 @@ export enum Type {
   alphanumeric
 }
 
-function generate (len = length * 2, type = Type.alphanumeric): string {
+function generate(len = length * 2, type = Type.alphanumeric): string {
   let alphabet: string = numeric + lower + upper
 
   switch (type) {
@@ -50,11 +50,11 @@ function generate (len = length * 2, type = Type.alphanumeric): string {
   return str
 }
 
-function number (len = length): string {
+function number(len = length): string {
   return generate(len, Type.numeric)
 }
 
-function hex (len = length * 2): string {
+function hex(len = length * 2): string {
   return generate(len, Type.hexic)
 }
 

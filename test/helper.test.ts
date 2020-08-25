@@ -1,6 +1,6 @@
 import helper from '../src/helper'
 
-test('\' \' is empty', () => {
+test("' ' is empty", () => {
   expect(helper.isEmpty(' ')).toBe(true)
 })
 
@@ -69,7 +69,7 @@ test('abc is equal abc', () => {
   expect(helper.isEqual('abc', 'abc')).toBe(true)
 })
 
-test('10 is equal \'10\'', () => {
+test("10 is equal '10'", () => {
   expect(helper.isEqual(10, '10')).toBe(true)
 })
 
@@ -97,7 +97,7 @@ test('new Map() is Map', () => {
   expect(helper.isMap(new Map())).toBe(true)
 })
 
-test('Symbol(\'hello\') is Symbol', () => {
+test("Symbol('hello') is Symbol", () => {
   expect(helper.isSymbol(Symbol('hello'))).toBe(true)
 })
 
@@ -109,7 +109,7 @@ test('new Error() is Error', () => {
   expect(helper.isError(new Error())).toBe(true)
 })
 
-test('/\./ is RegExp', () => {
+test('/./ is RegExp', () => {
   expect(helper.isRegExp(/\./)).toBe(true)
 })
 
@@ -129,7 +129,9 @@ test('override constructor is not PlainObject', () => {
 })
 
 test('override constructor prototype is not PlainObject', () => {
-  const Cls = function () {}
+  const Cls = function () {
+    // @ts-ignore
+  }
   // @ts-ignore
   Cls.prototype = undefined
 
@@ -141,11 +143,13 @@ test('override constructor prototype is not PlainObject', () => {
 })
 
 test('function is not PlainObject', () => {
-  const Person = function () {}
+  const Person = function () {
+    // @ts-ignore
+  }
   const person = new (Person as any)()
   expect(helper.isPlainObject(person)).toBe(false)
 })
 
-test('parseInt(\'abc\') is not number', () => {
+test("parseInt('abc') is not number", () => {
   expect(helper.isNaN(parseInt('abc'))).toBe(true)
 })

@@ -3,66 +3,66 @@ import type from './type'
 /* @ts-ignore */
 const whiteSpaceRegx = /^[\s\f\n\r\t\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff\x09\x0a\x0b\x0c\x0d\x20\xa0]+$/
 
-export function isBoolean (arg: any): boolean {
+export function isBoolean(arg: any): boolean {
   return type(arg) === 'boolean'
 }
 
-export function isString (arg: any): boolean {
+export function isString(arg: any): boolean {
   return type(arg) === 'string'
 }
 
-export function isNumber (arg: any): boolean {
+export function isNumber(arg: any): boolean {
   return type(arg) === 'number'
 }
 
 export const isArray = Array.isArray
 export const isNaN = Number.isNaN
 
-export function isSet (arg: any): boolean {
+export function isSet(arg: any): boolean {
   return type(arg) === 'set'
 }
 
-export function isMap (arg: any): boolean {
+export function isMap(arg: any): boolean {
   return type(arg) === 'map'
 }
 
-export function isSymbol (arg: any): boolean {
+export function isSymbol(arg: any): boolean {
   return type(arg) === 'symbol'
 }
 
-export function isObject (arg: any): boolean {
+export function isObject(arg: any): boolean {
   return type(arg) === 'object'
 }
 
-export function isDate (arg: any): boolean {
+export function isDate(arg: any): boolean {
   return type(arg) === 'date'
 }
 
-export function isRegExp (arg: any): boolean {
+export function isRegExp(arg: any): boolean {
   return type(arg) === 'regexp'
 }
 
-export function isError (arg: any): boolean {
+export function isError(arg: any): boolean {
   return type(arg) === 'error'
 }
 
-export function isFunction (arg: any): boolean {
+export function isFunction(arg: any): boolean {
   return type(arg) === 'function'
 }
 
-export function isNull (arg: any): boolean {
+export function isNull(arg: any): boolean {
   return type(arg) === 'null'
 }
 
-export function isUndefined (arg: any): boolean {
+export function isUndefined(arg: any): boolean {
   return type(arg) === 'undefined'
 }
 
-export function isNil (arg: any): boolean {
+export function isNil(arg: any): boolean {
   return isNull(arg) || isUndefined(arg)
 }
 
-export function isPlainObject (arg: any): boolean {
+export function isPlainObject(arg: any): boolean {
   if (isObject(arg) === false) return false
 
   const ctor = arg.constructor
@@ -78,7 +78,7 @@ export function isPlainObject (arg: any): boolean {
   return true
 }
 
-export function isEmpty (arg: any): boolean {
+export function isEmpty(arg: any): boolean {
   if (isNil(arg)) return true
 
   if (isBoolean(arg)) return false
@@ -114,23 +114,23 @@ export function isEmpty (arg: any): boolean {
   return false
 }
 
-export function isValid (arg: any): boolean {
+export function isValid(arg: any): boolean {
   return !isEmpty(arg)
 }
 
-export function isEqual (arg1: any, arg2: any): boolean {
+export function isEqual(arg1: any, arg2: any): boolean {
   return String(arg1) === String(arg2)
 }
 
-export function isTrue (arg1: any): boolean {
+export function isTrue(arg1: any): boolean {
   return arg1 === true || arg1 === 'true' || isEqual(arg1, '1')
 }
 
-export function isFalse (arg1: any): boolean {
+export function isFalse(arg1: any): boolean {
   return arg1 === false || arg1 === 'false' || isEqual(arg1, '0')
 }
 
-export function isBool (arg: any): boolean {
+export function isBool(arg: any): boolean {
   return isTrue(arg) || isFalse(arg)
 }
 

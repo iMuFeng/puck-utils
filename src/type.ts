@@ -1,6 +1,6 @@
 const toString = Object.prototype.toString
 
-export default function type (obj: any) {
+export default function type(obj: any) {
   if (obj === null) {
     return 'null'
   }
@@ -16,7 +16,11 @@ export default function type (obj: any) {
   const typeLower = type.toLowerCase()
 
   if (typeLower !== 'object') {
-    if (typeLower === 'number' || typeLower === 'boolean' || typeLower === 'string') {
+    if (
+      typeLower === 'number' ||
+      typeLower === 'boolean' ||
+      typeLower === 'string'
+    ) {
       return type
     }
     return typeLower

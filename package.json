@@ -1,7 +1,7 @@
 {
   "name": "@puckjs/utils",
   "description": "A basic development library",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -21,7 +21,7 @@
     "build": "tsc -p .",
     "test": "npm run lint && jest",
     "cov": "jest --coverage",
-    "lint": "tslint --project . -c tslint.json --fix",
+    "lint": "eslint . --ext .ts --ignore-pattern '**/*.d.ts' --quiet --fix",
     "clean": "rimraf lib",
     "prebuild": "npm run test && npm run clean",
     "prepublish": "npm run build"
@@ -41,10 +41,14 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^26.1.0",
     "tslib": "^2.0.0",
-    "tslint": "^6.0.0",
-    "tslint-config-alloy": "^0.2.1",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.9.5"
+    "@typescript-eslint/eslint-plugin": "3.10.0",
+    "@typescript-eslint/parser": "3.10.0",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-typescript": "^2.2.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "typescript": "^4.0.2"
   },
   "jest": {
     "transform": {

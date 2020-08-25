@@ -1,6 +1,6 @@
 import helper from './helper'
 
-function json (str: string, defaultValue?: any): any {
+function json(str: string, defaultValue?: any): any {
   let value: any
 
   try {
@@ -16,7 +16,7 @@ function json (str: string, defaultValue?: any): any {
   return value
 }
 
-function bool (arg: any, defaultValue?: boolean): boolean {
+function bool(arg: any, defaultValue?: boolean): boolean {
   if (helper.isEmpty(arg)) {
     return defaultValue || false
   }
@@ -32,7 +32,11 @@ function bool (arg: any, defaultValue?: boolean): boolean {
   return false
 }
 
-function int (arg: any, defaultValue?: number, maxValue?: number): number | undefined {
+function int(
+  arg: any,
+  defaultValue?: number,
+  maxValue?: number
+): number | undefined {
   if (helper.isNumber(arg)) {
     if (maxValue && maxValue < Number(arg)) {
       return maxValue
@@ -54,8 +58,9 @@ function int (arg: any, defaultValue?: number, maxValue?: number): number | unde
 }
 
 function htmlToText(html: string, limit = 100) {
-  let result = html.replace(/<style[^<>]*>((?!<\/).)*<\/style>/ig, '')
-    .replace(/<script[^<>]*>((?!<\/).)*<\/script>/ig, '')
+  let result = html
+    .replace(/<style[^<>]*>((?!<\/).)*<\/style>/gi, '')
+    .replace(/<script[^<>]*>((?!<\/).)*<\/script>/gi, '')
     .replace(/<[^>]+>/g, '')
     .replace(/\t|\r|\n|\r\n/g, '')
     .replace(/\s+/g, '')
