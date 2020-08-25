@@ -1,4 +1,7 @@
 export { default as helper } from './helper'
+export { default as hs } from './hs'
+export * from './http-error'
+export * from './http-status'
 export { default as nested } from './nested'
 export { default as object } from './object'
 export { default as parse } from './parse'
