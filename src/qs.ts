@@ -1,4 +1,4 @@
-import helper from './helper'
+import * as helper from './helper'
 
 function stringify(arg: Record<string, any>): string {
   const arr: string[] = []

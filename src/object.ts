@@ -1,6 +1,6 @@
 import * as diff from 'deep-object-diff'
 import clone from './clone'
-import helper from './helper'
+import * as helper from './helper'
 
 export function pick(
   arg: Record<string, any>,

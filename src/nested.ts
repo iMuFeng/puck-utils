@@ -1,4 +1,4 @@
-import helper from './helper'
+import { isArray, isValid } from './helper'
 import object from './object'
 
 function flatten(
@@ -20,7 +20,7 @@ function flatten(
       _index
     })
 
-    if (helper.isValid(item.children) && helper.isArray(item.children)) {
+    if (isValid(item.children) && isArray(item.children)) {
       newObjs = newObjs.concat(flatten(item.children, _index))
     }
   })

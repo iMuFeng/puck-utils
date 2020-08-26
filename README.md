@@ -24,7 +24,7 @@ helper.default.isEmpty([])
 import { helper } from '@puckjs/utils'
 helper.isEmpty([])
 
-import helper from '@puckjs/utils/lib/helper'
+import * as helper from '@puckjs/utils/lib/helper'
 helper.isEmpty([])
 ```
 

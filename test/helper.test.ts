@@ -1,4 +1,4 @@
-import helper from '../src/helper'
+import * as helper from '../src/helper'
 
 test("' ' is empty", () => {
   expect(helper.isEmpty(' ')).toBe(true)

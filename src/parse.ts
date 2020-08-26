@@ -1,4 +1,4 @@
-import helper from './helper'
+import * as helper from './helper'
 
 function json(str: string, defaultValue?: any): any {
   let value: any

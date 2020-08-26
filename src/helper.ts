@@ -133,29 +133,3 @@ export function isFalse(arg1: any): boolean {
 export function isBool(arg: any): boolean {
   return isTrue(arg) || isFalse(arg)
 }
-
-export default {
-  isArray,
-  isNaN,
-  isBoolean,
-  isDate,
-  isEmpty,
-  isError,
-  isFunction,
-  isMap,
-  isNull,
-  isNil,
-  isNumber,
-  isObject,
-  isPlainObject,
-  isRegExp,
-  isSet,
-  isString,
-  isSymbol,
-  isUndefined,
-  isValid,
-  isEqual,
-  isTrue,
-  isFalse,
-  isBool
-}
