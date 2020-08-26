@@ -1,5 +1,5 @@
 import schema, { RuleItem, Rules, ValidateOption } from 'async-validator'
-import helper from './helper'
+import * as helper from './helper'
 
 export type ValidateRules = Rules
 export type ValidateRuleItem = RuleItem

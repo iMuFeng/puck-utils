@@ -2,14 +2,14 @@ import { isPlainObject } from './helper'
 import { HttpStatus } from './http-status'
 
 interface HttpResponse {
-  code?: string
+  code?: string | number
   message: string
   errors?: Record<string, any> | Record<string, any>[]
 }
 
 export class HttpError extends Error {
   status: HttpStatus
-  code?: string
+  code?: string | number
   message: string
   errors?: Record<string, any> | Record<string, any>[]
 

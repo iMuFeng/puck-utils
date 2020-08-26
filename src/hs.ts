@@ -1,4 +1,4 @@
-import helper from './helper'
+import { isEmpty } from './helper'
 
 const second = 1
 // tslint:disable-next-line: no-magic-numbers
@@ -13,7 +13,7 @@ const year = day * 365
 const regx = /^(-?(?:\d+)?\.?\d+)(s|m|h|d|w|y)$/i
 
 function parse(arg: string): number | undefined {
-  if (helper.isEmpty(arg)) {
+  if (isEmpty(arg)) {
     return
   }
 
