@@ -156,15 +156,23 @@ export class UnsupportedMediaTypeError extends HttpError {
 
 export function transformGraphqlError(err: any): GraphqlError {
   const exception = err.extensions?.exception
+  const validationErrors = err.extensions?.validationErrors
 
   const graphqlError: GraphqlError = {
     message: exception?.message || err.message,
-    code: exception?.code || err.extensions?.code,
-    status: exception?.status
+    code: exception?.code || err.extensions?.code
+  }
+
+  if (exception?.status) {
+    graphqlError.status = exception?.status
   }
 
   if (exception?.errors) {
     graphqlError.errors = exception?.errors
+  } else if (validationErrors) {
+    graphqlError.errors = validationErrors.map(
+      (e: any) => Object.values(e.constraints)[0]
+    )
   }
 
   graphqlError.locations = err.locations
