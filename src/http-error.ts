@@ -7,6 +7,12 @@ interface HttpResponse {
   errors?: Record<string, any> | Record<string, any>[]
 }
 
+interface GraphqlError extends HttpResponse {
+  status?: HttpStatus
+  locations?: any[]
+  path?: any[]
+}
+
 export class HttpError extends Error {
   status: HttpStatus
   code?: string | number
@@ -146,4 +152,23 @@ export class UnsupportedMediaTypeError extends HttpError {
       HttpStatus.UNSUPPORTED_MEDIA_TYPE
     )
   }
+}
+
+export function transformGraphqlError(err: any): GraphqlError {
+  const exception = err.extensions?.exception
+
+  const graphqlError: GraphqlError = {
+    message: exception?.message || err.message,
+    code: exception?.code || err.extensions?.code,
+    status: exception?.status
+  }
+
+  if (exception?.errors) {
+    graphqlError.errors = exception?.errors
+  }
+
+  graphqlError.locations = err.locations
+  graphqlError.path = err.path
+
+  return graphqlError
 }

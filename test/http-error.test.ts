@@ -7,6 +7,7 @@ import {
   PayloadTooLargeError,
   ServiceUnavailableError,
   TooManyRequestsError,
+  transformGraphqlError,
   UnauthorizedError,
   UnsupportedMediaTypeError
 } from '../src/http-error'
@@ -121,4 +122,25 @@ test('unsupported media type error', () => {
   expect(new UnsupportedMediaTypeError('message', 'code').toJSON().code).toBe(
     'code'
   )
+})
+
+test('transform graphql error', () => {
+  expect(
+    transformGraphqlError({
+      code: 'BAD_REQUEST',
+      message: 'BAD_REQUEST',
+      extensions: {
+        exception: new TooManyRequestsError({
+          code: 'code',
+          message: 'message'
+        })
+      }
+    })
+  ).toStrictEqual({
+    status: 429,
+    locations: undefined,
+    path: undefined,
+    code: 'code',
+    message: 'message'
+  })
 })
