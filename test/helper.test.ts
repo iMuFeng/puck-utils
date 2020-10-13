@@ -1,4 +1,4 @@
-import * as helper from '../src/helper'
+import { helper } from '../src'
 
 test("' ' is empty", () => {
   expect(helper.isEmpty(' ')).toBe(true)
@@ -152,4 +152,20 @@ test('function is not PlainObject', () => {
 
 test("parseInt('abc') is not number", () => {
   expect(helper.isNaN(parseInt('abc'))).toBe(true)
+})
+
+test('window.FormData is form data', () => {
+  expect(helper.isFormData(new window.FormData())).toBe(true)
+})
+
+test('function is not form data', () => {
+  expect(
+    helper.isFormData(function () {
+      //
+    })
+  ).toBe(false)
+})
+
+test('object is not form data', () => {
+  expect(helper.isFormData({})).toBe(false)
 })

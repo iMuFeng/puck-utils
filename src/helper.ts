@@ -133,3 +133,7 @@ export function isFalse(arg1: any): boolean {
 export function isBool(arg: any): boolean {
   return isTrue(arg) || isFalse(arg)
 }
+
+export function isFormData(arg: any): boolean {
+  return type(arg) === 'formdata'
+}
