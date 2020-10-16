@@ -4,37 +4,43 @@ const lower = 'abcdefghijklmnopqrstuvwxyz'
 const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const length = 6
 
-export enum Type {
-  lower,
-  upper,
-  numeric,
-  hexic,
-  lowernumeric,
-  uppernumeric,
-  alphanumeric
+export enum RandomType {
+  LOWER,
+  UPPER,
+  NUMERIC,
+  HEXIC,
+  LOWER_NUMERIC,
+  UPPER_NUMERIC,
+  ALPHANUMERIC
 }
 
-function generate(len = length * 2, type = Type.alphanumeric): string {
+export function random(
+  len = length * 2,
+  type = RandomType.ALPHANUMERIC
+): string {
   let alphabet: string = numeric + lower + upper
 
   switch (type) {
-    case Type.lower:
+    case RandomType.LOWER:
       alphabet = lower
       break
-    case Type.upper:
+    case RandomType.UPPER:
       alphabet = upper
       break
-    case Type.numeric:
+    case RandomType.HEXIC:
+      alphabet = hexic
+      break
+    case RandomType.NUMERIC:
       alphabet = numeric
       break
-    case Type.lowernumeric:
+    case RandomType.LOWER_NUMERIC:
       alphabet = lower + numeric
       break
-    case Type.uppernumeric:
+    case RandomType.UPPER_NUMERIC:
       alphabet = upper + numeric
       break
-    case Type.hexic:
-      alphabet = hexic
+    case RandomType.ALPHANUMERIC:
+      alphabet = lower + upper + numeric
       break
     default:
       break
@@ -48,18 +54,4 @@ function generate(len = length * 2, type = Type.alphanumeric): string {
   }
 
   return str
-}
-
-function number(len = length): string {
-  return generate(len, Type.numeric)
-}
-
-function hex(len = length * 2): string {
-  return generate(len, Type.hexic)
-}
-
-export default {
-  generate,
-  number,
-  hex
 }

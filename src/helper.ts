@@ -1,7 +1,10 @@
-import type from './type'
+import { type } from './type'
+import validatorIsUUID from 'validator/lib/isUUID'
 
 /* @ts-ignore */
 const whiteSpaceRegx = /^[\s\f\n\r\t\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff\x09\x0a\x0b\x0c\x0d\x20\xa0]+$/
+
+export const isUUID = validatorIsUUID
 
 export function isBoolean(arg: any): boolean {
   return type(arg) === 'boolean'
@@ -16,7 +19,14 @@ export function isNumber(arg: any): boolean {
 }
 
 export const isArray = Array.isArray
-export const isNaN = Number.isNaN
+
+export function isValidArray(arg: any): boolean {
+  return isArray(arg) && arg.length > 0
+}
+
+export function isNan(arg: any): boolean {
+  return isNumber(arg) && Number.isNaN(arg)
+}
 
 export function isSet(arg: any): boolean {
   return type(arg) === 'set'
@@ -63,19 +73,15 @@ export function isNil(arg: any): boolean {
 }
 
 export function isPlainObject(arg: any): boolean {
-  if (isObject(arg) === false) return false
+  if (!isObject(arg)) return false
 
   const ctor = arg.constructor
   if (typeof ctor !== 'function') return false
 
-  const prot = ctor.prototype
-  if (isObject(prot) === false) return false
+  const proto = ctor.prototype
+  if (!isObject(proto)) return false
 
-  if (prot.hasOwnProperty('isPrototypeOf') === false) {
-    return false
-  }
-
-  return true
+  return proto.hasOwnProperty('isPrototypeOf')
 }
 
 export function isEmpty(arg: any): boolean {
@@ -136,4 +142,41 @@ export function isBool(arg: any): boolean {
 
 export function isFormData(arg: any): boolean {
   return type(arg) === 'formdata'
+}
+
+export function uniqueArray(arg: any): any[] {
+  if (!isValidArray(arg)) {
+    return []
+  }
+  return Array.from(new Set(arg))
+}
+
+export default {
+  isUUID,
+  isBoolean,
+  isString,
+  isNumber,
+  isArray,
+  isValidArray,
+  isNan,
+  isSet,
+  isMap,
+  isSymbol,
+  isObject,
+  isDate,
+  isRegExp,
+  isError,
+  isFunction,
+  isNull,
+  isUndefined,
+  isNil,
+  isPlainObject,
+  isEmpty,
+  isValid,
+  isEqual,
+  isTrue,
+  isFalse,
+  isBool,
+  isFormData,
+  uniqueArray
 }

@@ -1,4 +1,4 @@
-import qs from '../src/qs'
+import { qs } from '../src'
 
 const obj = {
   a: [1, 2, 3],

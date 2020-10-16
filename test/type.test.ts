@@ -1,4 +1,4 @@
-import type from '../src/type'
+import { type } from '../src'
 
 test('10 is number', () => {
   expect(type(10)).toBe('number')

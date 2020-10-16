@@ -1,4 +1,4 @@
-import * as helper from './helper'
+import { isArray, isEmpty, isString } from './helper'
 
 function stringify(arg: Record<string, any>): string {
   const arr: string[] = []
@@ -6,7 +6,7 @@ function stringify(arg: Record<string, any>): string {
   Object.keys(arg).forEach(key => {
     let value = arg[key]
 
-    if (helper.isEmpty(value)) {
+    if (isEmpty(value)) {
       value = ''
     } else {
       value = String(value)
@@ -21,7 +21,7 @@ function stringify(arg: Record<string, any>): string {
 function parse(str: string): Record<string, any> {
   const obj: Record<string, any> = {}
 
-  if (!helper.isString(str)) {
+  if (!isString(str)) {
     return obj
   }
 
@@ -31,10 +31,9 @@ function parse(str: string): Record<string, any> {
     const paramArr = param.split('=')
     const key = paramArr[0]
 
-    if (!helper.isEmpty(key)) {
+    if (!isEmpty(key)) {
       const val = paramArr[1]
-      const value = helper.isArray(val) ? val.join(',') : val || ''
-      obj[key] = value
+      obj[key] = isArray(val) ? val.join(',') : val || ''
     }
   })
 

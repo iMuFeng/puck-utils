@@ -151,7 +151,19 @@ test('function is not PlainObject', () => {
 })
 
 test("parseInt('abc') is not number", () => {
-  expect(helper.isNaN(parseInt('abc'))).toBe(true)
+  expect(helper.isNan(parseInt('abc'))).toBe(true)
+})
+
+test('[] is not valid array', () => {
+  expect(helper.isValidArray([])).toBe(false)
+})
+
+test('unique array', () => {
+  expect(helper.uniqueArray([1, 2, 3, 1, 2, 3, 2, 1])).toStrictEqual([1, 2, 3])
+})
+
+test('unique invalid array', () => {
+  expect(helper.uniqueArray({})).toStrictEqual([])
 })
 
 test('window.FormData is form data', () => {

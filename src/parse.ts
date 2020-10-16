@@ -1,6 +1,6 @@
 import * as helper from './helper'
 
-function json(str: string, defaultValue?: any): any {
+export function parseJson(str: string, defaultValue?: any): any {
   let value: any
 
   try {
@@ -16,7 +16,7 @@ function json(str: string, defaultValue?: any): any {
   return value
 }
 
-function bool(arg: any, defaultValue?: boolean): boolean {
+export function parseBool(arg: any, defaultValue?: boolean): boolean {
   if (helper.isEmpty(arg)) {
     return defaultValue || false
   }
@@ -25,14 +25,10 @@ function bool(arg: any, defaultValue?: boolean): boolean {
     return arg
   }
 
-  if (helper.isTrue(arg)) {
-    return true
-  }
-
-  return false
+  return helper.isTrue(arg)
 }
 
-function int(
+export function parseNumber(
   arg: any,
   defaultValue?: number,
   maxValue?: number
@@ -57,7 +53,7 @@ function int(
   return num
 }
 
-function htmlToText(html: string, limit = 100) {
+export function htmlToText(html: string, limit = 100) {
   let result = html
     .replace(/<style[^<>]*>((?!<\/).)*<\/style>/gi, '')
     .replace(/<script[^<>]*>((?!<\/).)*<\/script>/gi, '')
@@ -75,11 +71,4 @@ function htmlToText(html: string, limit = 100) {
   }
 
   return result
-}
-
-export default {
-  json,
-  bool,
-  int,
-  htmlToText
 }

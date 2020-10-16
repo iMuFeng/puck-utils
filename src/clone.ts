@@ -1,5 +1,5 @@
-import * as clone from 'clone'
+import * as c from 'clone'
 
-export default function <T>(obj: T): T {
-  return clone(obj)
+export function clone<T>(obj: T): T {
+  return c(obj)
 }

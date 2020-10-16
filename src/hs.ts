@@ -1,14 +1,10 @@
 import { isEmpty } from './helper'
 
 const second = 1
-// tslint:disable-next-line: no-magic-numbers
 const minute = second * 60
-// tslint:disable-next-line: no-magic-numbers
 const hour = minute * 60
-// tslint:disable-next-line: no-magic-numbers
 const day = hour * 24
 const week = day * 7
-// tslint:disable-next-line: no-magic-numbers
 const year = day * 365
 const regx = /^(-?(?:\d+)?\.?\d+)(s|m|h|d|w|y)$/i
 
@@ -48,10 +44,18 @@ function parse(arg: string): number | undefined {
   }
 }
 
-export default function humanizeSeconds(arg: string): number | undefined {
+export function hs(arg: string): number | undefined {
   const value = parse(arg)
 
   if (value) {
     return Math.round(value)
+  }
+}
+
+export function ms(arg: string): number | undefined {
+  const value = hs(arg)
+
+  if (value) {
+    return value * 1e3
   }
 }

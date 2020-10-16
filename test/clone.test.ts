@@ -1,4 +1,4 @@
-import clone from '../src/clone'
+import { clone } from '../src'
 
 const obj = {
   a: {

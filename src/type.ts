@@ -1,6 +1,6 @@
 const toString = Object.prototype.toString
 
-export default function type(obj: any) {
+export function type(obj: any): string {
   if (obj === null) {
     return 'null'
   }

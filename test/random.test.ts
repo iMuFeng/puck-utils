@@ -1,48 +1,44 @@
-import random, { Type } from '../src/random'
+import { random, RandomType } from '../src'
 
 const len = 6
 
 test('alphanumeric', () => {
-  const str = random.generate(len)
+  const str = random(len)
   expect(str).toHaveLength(len)
 })
 
 test('upper string', () => {
-  const str = random.generate(len, Type.upper)
+  const str = random(len, RandomType.UPPER)
   expect(/^[A-Z]{6}$/.test(str)).toBe(true)
 })
 
 test('lower string', () => {
-  const str = random.generate(len, Type.lower)
+  const str = random(len, RandomType.LOWER)
   expect(/^[a-z]{6}$/.test(str)).toBe(true)
 })
 
-test('lowernumeric string', () => {
-  const str = random.generate(len, Type.lowernumeric)
+test('lower numeric string', () => {
+  const str = random(len, RandomType.LOWER_NUMERIC)
   expect(/^[0-9a-z]{6}$/.test(str)).toBe(true)
 })
 
-test('uppernumeric string', () => {
-  const str = random.generate(len, Type.uppernumeric)
+test('upper numeric string', () => {
+  const str = random(len, RandomType.UPPER_NUMERIC)
   expect(/^[0-9A-Z]{6}$/.test(str)).toBe(true)
 })
 
 test('number', () => {
-  const str = random.number(len)
-  expect(/^[0-9]{6}$/.test(str)).toBe(true)
-})
-
-test('number without length', () => {
-  const str = random.number()
+  const str = random(len, RandomType.NUMERIC)
   expect(/^[0-9]{6}$/.test(str)).toBe(true)
 })
 
 test('hex string', () => {
-  const str = random.hex(len)
+  const str = random(len, RandomType.HEXIC)
   expect(/^[0-9a-f]{6}$/.test(str)).toBe(true)
 })
 
-test('hex string without length', () => {
-  const str = random.hex()
-  expect(/^[0-9a-f]{12}$/.test(str)).toBe(true)
+test('invalid type', () => {
+  // @ts-ignore
+  const str = random(len, 'invalid type')
+  expect(str).toHaveLength(len)
 })
