@@ -4,33 +4,13 @@
 
 A library for nodejs basic develop
 
-## Installation and Usage
+## Installation
 
 Install the library with `npm install @puckjs/utils` or `yarn add @puckjs/utils`
 
-#### No ES6
-
-```
-const utils = require('@puckjs/utils')
-utils.helper.isEmpty([])
-
-const helper = require('@puckjs/utils/lib/helper')
-helper.default.isEmpty([])
-```
-
-#### ES6
-
-```
-import { helper } from '@puckjs/utils'
-helper.isEmpty([])
-
-import * as helper from '@puckjs/utils/lib/helper'
-helper.isEmpty([])
-```
-
 ## Usage
 
-### Bytes
+#### Bytes
 
 Transfer humanize size to bytes.
 
