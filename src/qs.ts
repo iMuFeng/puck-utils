@@ -1,6 +1,6 @@
 import { isArray, isEmpty, isString } from './helper'
 
-function stringify(arg: Record<string, any>): string {
+export function stringify(arg: Record<string, any>): string {
   const arr: string[] = []
 
   Object.keys(arg).forEach(key => {
@@ -18,7 +18,7 @@ function stringify(arg: Record<string, any>): string {
   return arr.join('&')
 }
 
-function parse(str: string): Record<string, any> {
+export function parse(str: string): Record<string, any> {
   const obj: Record<string, any> = {}
 
   if (!isString(str)) {
@@ -38,9 +38,4 @@ function parse(str: string): Record<string, any> {
   })
 
   return obj
-}
-
-export default {
-  stringify,
-  parse
 }

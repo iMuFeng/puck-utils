@@ -20,6 +20,66 @@ export function isNumber(arg: any): boolean {
 
 export const isArray = Array.isArray
 
+export function isInt8Array(arg: any): boolean {
+  return type(arg) === 'int8array'
+}
+
+export function isUint8Array(arg: any): boolean {
+  return type(arg) === 'uint8array'
+}
+
+export function isUint8ClampedArray(arg: any): boolean {
+  return type(arg) === 'uint8clampedarray'
+}
+
+export function isInt16Array(arg: any): boolean {
+  return type(arg) === 'int16array'
+}
+
+export function isUint16Array(arg: any): boolean {
+  return type(arg) === 'uint16array'
+}
+
+export function isInt32Array(arg: any): boolean {
+  return type(arg) === 'int32array'
+}
+
+export function isUint32Array(arg: any): boolean {
+  return type(arg) === 'uint32array'
+}
+
+export function isFloat32Array(arg: any): boolean {
+  return type(arg) === 'float32array'
+}
+
+export function isFloat64Array(arg: any): boolean {
+  return type(arg) === 'float64array'
+}
+
+export function isBigInt64Array(arg: any): boolean {
+  return type(arg) === 'bigint64array'
+}
+
+export function isBigUint64Array(arg: any): boolean {
+  return type(arg) === 'biguint64array'
+}
+
+export function isArrayBuffer(arg: any): boolean {
+  return type(arg) === 'arraybuffer'
+}
+
+export function isSharedArrayBuffer(arg: any): boolean {
+  return type(arg) === 'sharedarraybuffer'
+}
+
+export function isDataView(arg: any): boolean {
+  return type(arg) === 'dataview'
+}
+
+export function isBigInt(arg: any): boolean {
+  return type(arg) === 'bigint'
+}
+
 export function isValidArray(arg: any): boolean {
   return isArray(arg) && arg.length > 0
 }
@@ -32,8 +92,16 @@ export function isSet(arg: any): boolean {
   return type(arg) === 'set'
 }
 
+export function isWeakSet(arg: any): boolean {
+  return type(arg) === 'weakset'
+}
+
 export function isMap(arg: any): boolean {
   return type(arg) === 'map'
+}
+
+export function isWeakMap(arg: any): boolean {
+  return type(arg) === 'weakmap'
 }
 
 export function isSymbol(arg: any): boolean {
@@ -102,7 +170,9 @@ export function isEmpty(arg: any): boolean {
   switch (type(arg)) {
     case 'file':
     case 'map':
-    case 'set': {
+    case 'weakmap':
+    case 'set':
+    case 'weakset': {
       return arg.size === 0
     }
 
@@ -149,34 +219,4 @@ export function uniqueArray(arg: any): any[] {
     return []
   }
   return Array.from(new Set(arg))
-}
-
-export default {
-  isUUID,
-  isBoolean,
-  isString,
-  isNumber,
-  isArray,
-  isValidArray,
-  isNan,
-  isSet,
-  isMap,
-  isSymbol,
-  isObject,
-  isDate,
-  isRegExp,
-  isError,
-  isFunction,
-  isNull,
-  isUndefined,
-  isNil,
-  isPlainObject,
-  isEmpty,
-  isValid,
-  isEqual,
-  isTrue,
-  isFalse,
-  isBool,
-  isFormData,
-  uniqueArray
 }

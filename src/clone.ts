@@ -1,5 +1,6 @@
-import * as c from 'clone'
+// @ts-ignore
+import * as cloneDeep from 'lodash/cloneDeep'
 
 export function clone<T>(obj: T): T {
-  return c(obj)
+  return cloneDeep(obj)
 }

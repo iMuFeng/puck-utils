@@ -147,7 +147,9 @@ import helper from '@puckjs/utils/lib/helper'
 | isValidArray(arg: any)        | check if the argument is Array and array length greater then 0                              |
 | isNan(arg: any)               | check if the argument is NaN                                                                |
 | isSet(arg: any)               | check if the argument is Set                                                                |
+| isWeakSet(arg: any)           | check if the argument is WeakSet                                                            |
 | isMap(arg: any)               | check if the argument is Map                                                                |
+| isWeakMap(arg: any)           | check if the argument is WeakMap                                                            |
 | isSymbol(arg: any)            | check if the argument is Symbol                                                             |
 | isObject(arg: any)            | check if the argument is Object                                                             |
 | isDate(arg: any)              | check if the argument is Date or date string                                                |

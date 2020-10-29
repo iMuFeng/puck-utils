@@ -93,8 +93,16 @@ test('new Set() is Set', () => {
   expect(helper.isSet(new Set())).toBe(true)
 })
 
+test('new WeakSet() is WeakSet', () => {
+  expect(helper.isWeakSet(new WeakSet())).toBe(true)
+})
+
 test('new Map() is Map', () => {
   expect(helper.isMap(new Map())).toBe(true)
+})
+
+test('new WeakMap() is WeakMap', () => {
+  expect(helper.isWeakMap(new WeakMap())).toBe(true)
 })
 
 test("Symbol('hello') is Symbol", () => {
@@ -180,4 +188,64 @@ test('function is not form data', () => {
 
 test('object is not form data', () => {
   expect(helper.isFormData({})).toBe(false)
+})
+
+test('isInt8Array', () => {
+  expect(helper.isInt8Array(new Int8Array())).toBe(true)
+})
+
+test('isUint8Array', () => {
+  expect(helper.isUint8Array(new Uint8Array())).toBe(true)
+})
+
+test('isUint8ClampedArray', () => {
+  expect(helper.isUint8ClampedArray(new Uint8ClampedArray())).toBe(true)
+})
+
+test('isInt16Array', () => {
+  expect(helper.isInt16Array(new Int16Array())).toBe(true)
+})
+
+test('isUint16Array', () => {
+  expect(helper.isUint16Array(new Uint16Array())).toBe(true)
+})
+
+test('isInt32Array', () => {
+  expect(helper.isInt32Array(new Int32Array())).toBe(true)
+})
+
+test('isUint32Array', () => {
+  expect(helper.isUint32Array(new Uint32Array())).toBe(true)
+})
+
+test('isFloat32Array', () => {
+  expect(helper.isFloat32Array(new Float32Array())).toBe(true)
+})
+
+test('isFloat64Array', () => {
+  expect(helper.isFloat64Array(new Float64Array())).toBe(true)
+})
+
+test('isBigInt64Array', () => {
+  expect(helper.isBigInt64Array(new BigInt64Array())).toBe(true)
+})
+
+test('isBigUint64Array', () => {
+  expect(helper.isBigUint64Array(new BigUint64Array())).toBe(true)
+})
+
+test('isArrayBuffer', () => {
+  expect(helper.isArrayBuffer(new ArrayBuffer(8))).toBe(true)
+})
+
+test('isSharedArrayBuffer', () => {
+  expect(helper.isSharedArrayBuffer(new SharedArrayBuffer(8))).toBe(true)
+})
+
+test('isDataView', () => {
+  expect(helper.isDataView(new DataView(new ArrayBuffer(16)))).toBe(true)
+})
+
+test('isBigInt', () => {
+  expect(helper.isBigInt(BigInt(9007199254740991))).toBe(true)
 })

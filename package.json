@@ -1,7 +1,7 @@
 {
   "name": "@puckjs/utils",
   "description": "A basic development library",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -24,17 +24,17 @@
     "lint": "eslint . --ext .ts --quiet --fix",
     "clean": "rimraf lib",
     "prebuild": "npm run clean",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@types/clone": "^0.1.30",
+    "@types/lodash": "^4.14.163",
     "@types/mime-types": "^2.1.0",
     "@types/uuid": "^8.3.0",
     "@types/validator": "^13.1.0",
-    "clone": "^2.1.2",
     "dayjs": "^1.8.36",
     "deep-object-diff": "^1.1.0",
     "humanize-bytes": "^1.0.1",
+    "lodash": "^4.17.20",
     "mime-types": "^2.1.27",
     "nanoid": "^3.1.12",
     "slugify": "^1.4.5",
