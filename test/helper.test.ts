@@ -266,6 +266,14 @@ test("3.14 is number", () => {
   expect(helper.isNumeric('3.14')).toBe(true)
 })
 
+test("24x is not number", () => {
+  expect(helper.isNumeric('24x')).toBe(false)
+})
+
+test("ti10 is not number", () => {
+  expect(helper.isNumeric('ti10')).toBe(false)
+})
+
 test("3.1.4 is not number", () => {
   expect(helper.isNumeric('3.1.4')).toBe(false)
 })
