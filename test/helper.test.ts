@@ -249,3 +249,23 @@ test('isDataView', () => {
 test('isBigInt', () => {
   expect(helper.isBigInt(BigInt(9007199254740991))).toBe(true)
 })
+
+test("10 is number", () => {
+  expect(helper.isNumeric(10)).toBe(true)
+})
+
+test("+5 is number", () => {
+  expect(helper.isNumeric('+5')).toBe(true)
+})
+
+test("-8 is number", () => {
+  expect(helper.isNumeric('-8')).toBe(true)
+})
+
+test("3.14 is number", () => {
+  expect(helper.isNumeric('3.14')).toBe(true)
+})
+
+test("3.1.4 is not number", () => {
+  expect(helper.isNumeric('3.1.4')).toBe(false)
+})
