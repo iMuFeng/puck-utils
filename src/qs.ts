@@ -1,24 +1,37 @@
-import { isArray, isEmpty, isString } from './helper'
+import { isEmpty, isString } from './helper'
 
-export function stringify(arg: Record<string, any>): string {
+interface QsOptions {
+  encode?: boolean
+  decode?: boolean
+  separator?: string
+}
+
+export function stringify(
+  arg: Record<string, any>,
+  options?: QsOptions
+): string {
   const arr: string[] = []
 
   Object.keys(arg).forEach(key => {
-    let value = arg[key]
+    let val = arg[key]
 
-    if (isEmpty(value)) {
-      value = ''
+    if (isEmpty(val)) {
+      val = ''
     } else {
-      value = String(value)
+      val = String(val)
     }
 
-    arr.push(`${key}=${value}`)
+    if (options?.encode) {
+      val = encodeURIComponent(val)
+    }
+
+    arr.push(`${key}=${val}`)
   })
 
   return arr.join('&')
 }
 
-export function parse(str: string): Record<string, any> {
+export function parse(str: string, options?: QsOptions): Record<string, any> {
   const obj: Record<string, any> = {}
 
   if (!isString(str)) {
@@ -32,8 +45,18 @@ export function parse(str: string): Record<string, any> {
     const key = paramArr[0]
 
     if (!isEmpty(key)) {
-      const val = paramArr[1]
-      obj[key] = isArray(val) ? val.join(',') : val || ''
+      let val: any = paramArr[1]
+
+      if (options?.decode) {
+        val = decodeURIComponent(val)
+      }
+
+      val =
+        options?.separator && val.includes(options?.separator)
+          ? val.split(options?.separator)
+          : val
+
+      obj[key] = val
     }
   })
 
